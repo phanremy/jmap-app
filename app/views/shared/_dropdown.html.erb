@@ -1,0 +1,23 @@
+<div data-controller="dropdown-manage"
+     data-dropdown-manage-listen-click-value="<%= is_closing_on_click %>"
+     class="relative inline-block text-left <%= container_class %>">
+
+  <button data-action="click->dropdown-manage#call"
+          data-dropdown-manage-target="button"
+          type="button"
+          class="inline-flex justify-center items-center w-full rounded-md border border-gray-300 dark:border-secondary shadow-sm px-4 py-2 bg-white dark:bg-black text-sm font-medium text-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-ternary" id="menu-button" aria-expanded="true" aria-haspopup="true">
+    <div class="hidden lg:block"><%= button_label_lg %></div> <div class="block lg:hidden"><%= button_label_sm %></div>
+    <!-- Heroicon name: solid/chevron-down -->
+    <%= svg_tag 'icons/chevron_down',
+                size: 'sm',
+                svg_class: "ml-2 lg:-mr-1 #{ 'rotate-180' unless true }" %>
+  </button>
+
+  <div data-dropdown-manage-target="content"
+       class="<%= 'hidden' unless by_default_visible %> <%= 'right-0' unless is_left %> <%= 'bottom-[45px]' unless is_top %> z-10 origin-top-right absolute mt-2 min-w-fit w-full rounded-md border border-white shadow-lg bg-white dark:bg-black ring-1 ring-black ring-opacity-5 focus:outline-none"
+       role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+    <div class="py-1" role="none">
+      <%= content %>
+    </div>
+  </div>
+</div>

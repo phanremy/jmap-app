@@ -1,0 +1,20 @@
+<% if resource.errors.any? %>
+  <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-5" role="errir" data-controller="html-remove">
+   <h2>
+      <%= I18n.t("errors.messages.not_saved",
+                 count: resource.errors.count,
+                 resource: resource.class.model_name.human.downcase)
+       %>
+    </h2>
+    <span class="block sm:inline">
+      <ul>
+        <% resource.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </span>
+    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+      <%= svg_tag 'icons/cross', size: '2xl', svg_class: 'fill-current cursor-pointer', options: { 'data-action': "click->html-remove#call" } %>
+    </span>
+  </div>
+<% end %>

@@ -1,0 +1,49 @@
+<div class="flex flex-col justify-center items-center w-full py-10 my-10">
+  <h1 class="text-black dark:text-white font-heading text-7xl text-center mb-10"><%= t('.title') %></h1>
+  <div class="w-full lg:w-2/3">
+    <div class="block lg:grid grid-rows-2 grid-flow-col gap-4">
+      <div class="row-span-2 relative rounded-lg flex justify-center items-center p-5 text-black dark:text-white">
+        <div class="absolute opacity-0 hover:opacity-100 top-0 h-full w-full flex flex-col justify-center items-center bg-secondary text-white border-0 lg:border border-gray-300 dark:border-secondary rounded-lg font-heading text-7xl">
+          Framework
+          <br>
+          Ruby on Rails
+          <%= render layout: 'shared/modal_button', locals: { content: t('.rails_description') } do %>
+            <%= svg_tag 'icons/question_mark_circle', size: '5xl', svg_class: 'text-primary', options: { g_color: 'none', fill: 'none', 'stroke-width': '1.5', stroke: 'currentColor' } %>
+          <% end %>
+        </div>
+        <div class="block lg:hidden">
+          <%= image_tag 'tech/rails_full', width: 350 %>
+        </div>
+        <div class="hidden lg:block">
+          <%= image_tag 'tech/rails_full', width: 500 %>
+        </div>
+      </div>
+      <div class="row-span-1 relative flex justify-center items-center p-5 text-black dark:text-white">
+        <div class="absolute opacity-0 hover:opacity-100 top-0 h-full w-full flex flex-col justify-center items-center bg-secondary text-white border-0 lg:border border-gray-300 dark:border-secondary rounded-lg font-heading text-7xl">
+          Back
+          <br>
+          Ruby
+          <%= render layout: 'shared/modal_button', locals: { content: t('.ruby_description') } do %>
+            <%= svg_tag 'icons/question_mark_circle', size: '5xl', svg_class: 'text-primary', options: { g_color: 'none', fill: 'none', 'stroke-width': '1.5', stroke: 'currentColor' } %>
+          <% end %>
+        </div>
+        <div class="h-fit border rounded-lg bg-white">
+          <%= image_tag 'tech/ruby', width: 300 %>
+        </div>
+      </div>
+      <div class="row-span-1 relative flex justify-center items-center p-5 text-black dark:text-white">
+        <div class="absolute opacity-0 hover:opacity-100 top-0 h-full w-full flex flex-col justify-center items-center bg-secondary text-white border-0 lg:border border-gray-300 dark:border-secondary rounded-lg font-heading text-7xl">
+          Front
+          <br>
+          StimulusJS
+          <%= render layout: 'shared/modal_button', locals: { content: t('.stimulusjs_description') } do %>
+            <%= svg_tag 'icons/question_mark_circle', size: '5xl', svg_class: 'text-primary', options: { g_color: 'none', fill: 'none', 'stroke-width': '1.5', stroke: 'currentColor' } %>
+          <% end %>
+        </div>
+        <div class="h-fit border rounded-lg bg-white">
+          <%= image_tag 'tech/stimulus', width: 300 %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

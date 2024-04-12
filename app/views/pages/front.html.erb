@@ -1,0 +1,27 @@
+<%= render layout: 'shared/container' do %>
+  <div id="<%= t("front.sections.hero").parameterize %>">
+    <%= render 'pages/front/hero' %>
+  </div>
+<% end %>
+
+<div id="<%= t("front.sections.banner").parameterize %>">
+  <%= render 'pages/front/banner' %>
+</div>
+
+<%= render layout: 'shared/container' do %>
+  <div id="<%= t("front.sections.panels").parameterize %>">
+    <%= render 'pages/front/panels' %>
+  </div>
+
+  <div id="<%= t("front.sections.tiles").parameterize %>">
+    <%= render 'pages/front/tiles' %>
+  </div>
+
+  <div id="<%= t("front.sections.faqs").parameterize %>">
+    <%= render 'pages/front/faqs' %>
+  </div>
+<% end %>
+
+<div id="<%= t("front.sections.footer").parameterize %>">
+  <%= render 'pages/front/footer' %>
+</div>

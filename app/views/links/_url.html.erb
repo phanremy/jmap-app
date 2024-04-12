@@ -1,0 +1,7 @@
+<%= turbo_frame_tag :space_link do %>
+  <%= link_to link_url(link), link_path(link), data: { turbo: false }, class: "text-ternary hover:underline" %> <br>
+  <div class="flex">
+    <%= t('links.available_until', date: link.end_date) %>
+     | <%= button_to t('actions.delete'), link_path(link), method: :delete, class: "text-destructive hover:text-destructive-darker hover:underline" %>
+  </div>
+<% end%>

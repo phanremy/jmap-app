@@ -1,0 +1,30 @@
+<% revealed ||= false %>
+
+<li data-controller="class-toggle">
+  <div
+    class="group hover:cursor-pointer flex justify-between items-center pt-3 pb-3"
+    data-action="click->class-toggle#call">
+    <button class="text-left font-body text-black dark:text-white group-hover:primary-text">
+      <%= title %>
+    </button>
+    <p class="text-sm text-black dark:text-white">
+      <%= svg_tag 'icons/chevron_down',
+                  size: 'md',
+                  svg_class: "#{ 'hidden' if revealed }",
+                  options: {
+                    data: { 'class-toggle-target': 'element',
+                            'class-toggle-value': 'hidden' }
+                  } %>
+      <%= svg_tag 'icons/chevron_up',
+                  size: 'md',
+                  svg_class: "#{ 'hidden' unless revealed }",
+                  options: {
+                    data: { 'class-toggle-target': 'element',
+                            'class-toggle-value': 'hidden' }
+                  } %>
+    </p>
+  </div>
+  <div class="<%= 'hidden' unless revealed %> mb-4 select-none text-sm font-body text-muted-foreground mt-3" data-class-toggle-target="element" data-class-toggle-value="hidden">
+    <%= content %>
+  </div>
+</li>

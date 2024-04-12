@@ -1,0 +1,6 @@
+<%= form_with url: open_modal_url, method: :post do |form| %>
+  <%= form.hidden_field :content, value: content %>
+  <%= form.button type: :submit do %>
+    <%= yield %>
+  <% end %>
+<% end %>

@@ -1,0 +1,21 @@
+<% if can? :create, Space %>
+  <%= primary_link(t('spaces.new'), new_space_path) %>
+  <br><br>
+<% end %>
+<%#= render 'shared/search_and_filter', search_url: spaces_url %>
+<% if @spaces.count.positive? %>
+  <%= turbo_frame_tag :spaces do %>
+    <%= render @spaces %>
+    <% if @pagy.next %>
+      <%= turbo_frame_tag :spaces, loading: :lazy, src: spaces_path(only_path: false, params: { page: @pagy.next }.merge(request.query_parameters.except(:page))) do %>
+        <div class="flex justify-center items-center">
+          <div class="w-1/2">
+            <%= render partial: 'shared/spinner' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% else %>
+  <p><%= t('alert.none', class_name: t('space', scope: 'activerecord.models').pluralize.downcase) %></p>
+<% end %>

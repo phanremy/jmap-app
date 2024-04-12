@@ -1,0 +1,112 @@
+fr:
+  actions:
+    delete: Supprimer
+    edit: Modifier
+    home: Accueil
+    navigation:
+      lg: Navigation
+      sm: Nav.
+    options: Options
+    search: Recherche
+    submit: Soumettre
+    validate: Accepter
+    reload: Rafraîchir la page
+  alert:
+    characters_minimum: (%{number} caractères minimum)
+    done: Terminé !
+    general_error: Quelque chose s'est mal passé, veuillez réessayer plus tard
+    none: Aucun(e) %{class_name}
+  devise:
+    forgot_password: Mot de passe oublié ?
+    log_in: Se connecter
+    log_out: Se déconnecter
+    send_reset: Envoi du mail d'instruction
+    sign_up: S'inscrire
+  pagy:
+    gap: …
+    next: Suivant
+    prev: Préc.
+    result_html:
+      Affichage
+      <span class="font-medium">%{from}</span>
+      à
+      <span class="font-medium">%{to}</span>
+      des
+      <span class="font-medium">%{count}</span>
+      résultats
+  links:
+    description: Un lien temporaire à partager avec de nouveaux membres
+    available_until: Disponible jusqu'au %{date}
+    create: Créer un lien
+    create_success: Le lien a été créé avec succès !
+    destroy_success: Le lien a été supprimé avec succès.
+    show_failure: Lien incorrect
+  posts:
+    index: Posts
+    new: Nouveau Post
+    create_success: Le Post a été créé avec succès !
+    destroy_confirm: Êtes-vous sûr ? La suppression d'un Post est définitive.
+    destroy_success: Le Post a été supprimé avec succès.
+    update_success: Le Post a été mis à jour avec succès !
+  spaces:
+    index:
+      title: Espaces
+    new: Nouvel Espace
+    create_success: L'Espace a été créé avec succès !
+    destroy_confirm: Êtes-vous sûr ? La suppression d'un Espace est définitive.
+    destroy_success: L'Espace a été supprimé avec succès.
+    update_success: L'Espace a été mis à jour avec succès !
+    users:
+      unconfirmed:
+        description: Votre adhésion est en attente de confirmation.
+      form:
+        new_user_description: Créez un compte et devenez membre de %{space_name}
+        existing_user_description: Devenez membre de %{space_name}
+  users:
+    index:
+      title: Utilisateurs
+      spaces_count: Nb d'espaces
+      actions: Actions
+    destroy_confirm: Êtes-vous sûr ? La suppression d'un Utilisateur est définitive.
+    destroy_not_yourself: Vous ne pouvez pas vous supprimer vous-même
+    destroy_success: L'Utilisateur a été supprimé avec succès.
+    not_confirmed: En attente de confirmation
+    update_success: L'Utilisateur a été mis à jour avec succès !
+  date:
+    abbr_day_names:
+    abbr_month_names:
+    day_names:
+    month_names:
+    formats:
+      long: "%A %e %B %Y"
+      short: "%e %B %Y"
+
+  activerecord:
+    models:
+     space: Espace
+     post: Poste
+     user: Utilisateur
+
+    attributes:
+      post:
+        title: Titre
+        body: Contenu
+      space:
+        description: Description
+        owner: Admin
+        users: Membres
+        created_at: Crée le
+      user:
+        admin: Admin
+        confirmed: Confirmé(e)
+        email: Courrier électronique
+        password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
+        remember_me: Se souvenir de moi
+
+  errors:
+    models:
+      # space:
+      #   attributes:
+            # description:
+              # uniqueness: déjà pris (un utilisateur ne peut pas avoir deux espaces avec la même description)

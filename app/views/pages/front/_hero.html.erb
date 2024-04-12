@@ -1,0 +1,19 @@
+<div class="min-h-[60vh] lg:flex lg:items-center mb-10">
+  <div class="min-h-[60vh] min-w-[50vw] lg:mr-10 lg:min-h-fit">
+    <h3 class="text-primary font-heading text-2xl mb-10"><%= t('.sub_title') %></h3>
+    <h1 class="text-black dark:text-white font-heading text-7xl mb-10"><%= t('.title') %></h1>
+    <code class="text-black bg-gray-200 px-2 py-1">
+      rails new, bundle add, rails g model, importmap pin..
+    </code>
+    <p class="font-body text-muted-foreground text-lg mt-2 mb-10">
+      <%= t('.description') %>
+    </p>
+    <div class="flex">
+      <%= secondary_link(t('.button_secondary_sign_up'), new_user_registration_path, class: 'mr-8') %>
+      <%= primary_link(t('.button_primary_spaces'), spaces_path) %>
+    </div>
+  </div>
+  <div class="w-full">
+    <%= image_tag 'start_building' %>
+  </div>
+</div>

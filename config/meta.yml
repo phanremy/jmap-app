@@ -1,0 +1,5 @@
+meta_product_name: "Jmap app"
+meta_title: "Jmapp"
+meta_description: "Japan map app"
+meta_image: "components/og-image-menu.png" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards

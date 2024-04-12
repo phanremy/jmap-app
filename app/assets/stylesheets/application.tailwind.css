@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* does not work (does not have priority) */
+.ss-main .ss-values .ss-value {
+  @apply bg-secondary
+}
+
+/* [type=checkbox]:checked, [type=radio]:checked, [type=checkbox]:checked:hover, [type=radio]:checked:hover {
+  @apply bg-secondary
+} */
+
+/* FOR FLOATING FORM FIELD : https://notiz.dev/blog/floating-form-field-with-tailwindcss */
+.border-none {
+  border: 0 0 #000 !important;
+}
+
+input, textarea {
+  --tw-ring-shadow: 0 0 #000 !important;
+}
+
+input:focus-within ~ label {
+  @apply transform scale-75 -translate-y-6 text-primary;
+}
+
+input:focus-within ~ label,
+input:not(:placeholder-shown) ~ label {
+  @apply transform scale-75 -translate-y-6;
+}
+
+input:focus-within ~ label {
+  @apply text-primary;
+}
+
+textarea:focus-within ~ label {
+  @apply transform scale-75 -translate-y-6 text-primary;
+}
+
+textarea:focus-within ~ label,
+textarea:not(:placeholder-shown) ~ label {
+  @apply transform scale-75 -translate-y-6;
+}
+
+textarea:focus-within ~ label {
+  @apply text-primary;
+}
+
+select:focus-within ~ label {
+  @apply transform scale-75 -translate-y-6 text-primary;
+}
+
+select:focus-within ~ label,
+select:not(:placeholder-shown) ~ label {
+  @apply transform scale-75 -translate-y-6;
+}
+
+select:focus-within ~ label {
+  @apply text-primary;
+}
+
+/* FOR FLOATING FORM FIELD - END */

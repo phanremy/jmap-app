@@ -1,0 +1,27 @@
+<% index ||= local_assigns[:"#{user.class.to_s.downcase}_counter"] %>
+<div class="<%= class_names('table-row', index&.odd? ? 'bg-white' : 'bg-gray-50') %>">
+  <%= table_cell do %>
+    <%= user.email %>
+  <% end %>
+
+  <%= table_cell do %>
+    <%= user.spaces.count %>
+  <% end %>
+
+  <%= table_cell do %>
+    <%= user.admin? %>
+  <% end %>
+
+  <%= table_cell do %>
+    <%= user.confirmed? %>
+  <% end %>
+
+  <%= table_cell do %>
+    <div class="flex">
+      <%= link_to t('actions.edit'), edit_user_path(user), class: "text-secondary hover:text-secondary-darker hover:underline" %>
+      <% if user != current_user %>
+         | <%= button_to t('actions.delete'), user_path(user), method: :delete, form: { data: { turbo_confirm: t('users.destroy_confirm') } }, class: "text-destructive hover:text-destructive-darker hover:underline" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

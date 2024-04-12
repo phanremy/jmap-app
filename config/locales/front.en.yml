@@ -1,0 +1,67 @@
+en:
+  front:
+    sections:
+      hero: Hero
+      banner: Banner
+      panels: Framework
+      tiles: Features
+      faqs: FAQ's
+      footer: Footer
+    actions:
+      get_started: Get Started
+      privacy_policy: Privacy Policy
+      terms_of_service: Terms of Service
+  pages:
+    front:
+      hero:
+        sub_title: A template for your projects with Ruby on Rails
+        title: Your next project starts here
+        description: We know it by heart, right? You should know it by heart!
+                     These are some of the methods one needs to use to start a new project.
+                     It is however a repetitive task that might impede on your capacities to ship continuously and quickly.
+                     Feel free to use this template to create your next project!
+        button_primary_spaces: Get Started!
+        button_secondary_sign_up: Where to Start?
+      panels:
+        title: Meet your loyal framework
+        rails_description: Ruby on Rails is a powerful web application framework that follows the Model-View-Controller (MVC) architectural pattern. Built on the Ruby programming language, it emphasizes convention over configuration, streamlining development by providing default structures for databases, web services, and web pages. Rails simplifies common tasks like database management, routing, and form handling, enabling rapid development with less code. Its extensive library of gems further enhances functionality. With its focus on developer productivity and code elegance, Rails is popular for building scalable, maintainable web applications. Its vibrant community and extensive documentation make it a top choice for startups and established companies alike.
+        ruby_description: Ruby is a dynamic, object-oriented programming language renowned for its simplicity and elegance. Designed for developer happiness, it prioritizes readability and productivity. With its concise syntax and flexible typing, Ruby fosters rapid development and encourages clean, expressive code. It boasts powerful features like blocks, metaprogramming, and mixins, empowering developers to create elegant solutions to complex problems. Ruby's vibrant community and extensive ecosystem of libraries, known as gems, provide solutions for virtually any task. Whether building web applications with Ruby on Rails, scripting, or crafting system utilities, Ruby's versatility and user-friendly nature make it a popular choice for programmers worldwide.
+        stimulusjs_description: StimulusJS is designed to augment HTML-based applications with minimal JavaScript. It focuses on enhancing interactivity by providing a set of conventions for adding behavior to HTML elements. By leveraging data attributes and simple JavaScript controllers, developers can create dynamic, responsive web interfaces without the complexity of a full-fledged single-page application framework. StimulusJS promotes a progressive enhancement approach, allowing developers to enrich their applications gradually while maintaining accessibility and compatibility with a wide range of browsers.
+      banner:
+        title: A progressive web app (PWA) with metadata to be shared on social media and optimized for search engines (SEO)
+      tiles:
+        title: Explore the features of your new template
+        tile_1_title_space: '[ 🏠 ] Community Spaces'
+        tile_1_description_space: A flexible and standard model created to manage communities, restaurants, etc.
+        tile_2_title_space_user: '[ 👨‍👩‍👧‍👦 ] Memberships'
+        tile_2_description_space_user: An innovative way to invite newcomers through a Link system and grow your users
+        tile_3_title_user: '[ 🙍‍♂️ ] User Management'
+        tile_3_description_user: Administration tables to manage users, block them or promote them to admin role
+        tile_4_title_yml: '[ 🌍 ] Multi-language options'
+        tile_4_description_yml: Ready made translations (English, French and Spanish)
+        tile_5_title_safety: '[ 🔒 ] Authentification & Authorization'
+        tile_5_description_safety: State of the art safety gems. Authenticate through Github, Google, etc.
+        tile_6_title_dark: '[ 🌙 ] Dark Mode of the Moon (in progress)'
+        tile_6_description_dark: Switch between Moon and Sun to manage dark themes
+        tile_7_title_html: '[ 🏎️ ] Turbostream style rendering'
+        tile_7_description_html: Ready made and standardized HTML through Turbostream and layouts
+        tile_8_title_css: '[ 🎨 ] Tailwind style CSS'
+        tile_8_description_css: Ready made and standardized CSS through Tailwind
+        tile_9_title_js: '[ 🏃 ] Importmap style JS'
+        tile_9_description_js: Ready made and standardized Javascript through Importmap
+      faqs:
+        faq_1_question_goal: What is the main purpose of the app?
+        faq_1_answer_goal: The app serves as a template for Ruby on Rails projects. It streamlines the process of starting new projects by providing standardized methods, allowing for continuous and rapid development.
+        faq_2_question_features: What features does the app offer?
+        faq_2_answer_features: The website offers various features including Community Spaces management, Membership systems, User Management tools, Multi-language options (English, French, and Spanish), Authentication & Authorization mechanisms, and upcoming features like Dark Mode and Turbostream style rendering.
+        faq_3_question_safety: Can you provide more details about the safety measures implemented in the app?
+        faq_3_answer_safety: The app utilizes state-of-the-art safety gems for authentication and authorization. Users can authenticate through platforms like GitHub, Google, etc., ensuring secure access to the website's functionalities.
+        faq_4_question_customization: Is there support for customization and styling in the app?
+        faq_4_answer_customization: Yes, the app offers Tailwind style CSS and Importmap style JavaScript for ready-made and standardized styling options. Additionally, users can switch between light and dark themes with the upcoming Dark Mode feature.
+        faq_5_question_seo: Is the app optimized for social media sharing and search engine visibility?
+        faq_5_answer_seo: Yes, the app is designed as a progressive web app (PWA) with metadata specifically optimized for social media sharing and search engine optimization (SEO). This ensures that when shared on social media platforms, the website appears with relevant information and images, and it ranks well on search engine results pages, ultimately increasing its visibility and reach.
+      footer:
+        sections: Sections
+        links: Links
+        more: More
+        legal: Legal

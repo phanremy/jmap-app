@@ -1,0 +1,18 @@
+<ul role="list" class="divide-y divide-gray-300 dark:divide-secondary">
+  <%= render 'shared/accordion',
+             revealed: true,
+             title: t('.faq_1_question_goal'),
+             content: t('.faq_1_answer_goal') %>
+  <%= render 'shared/accordion',
+             title: t('.faq_2_question_features'),
+             content: t('.faq_2_answer_features')  %>
+  <%= render 'shared/accordion',
+             title: t('.faq_3_question_safety'),
+             content: t('.faq_3_answer_safety')  %>
+  <%= render 'shared/accordion',
+             title: t('.faq_4_question_customization'),
+             content: t('.faq_4_answer_customization')  %>
+  <%= render 'shared/accordion',
+             title: t('.faq_5_question_seo'),
+             content: t('.faq_5_answer_seo')  %>
+</ul>

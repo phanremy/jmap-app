@@ -1,0 +1,43 @@
+<div class="w-full sticky top-0 lg:py-5 py-1 mb-5">
+  <div class="w-full flex flex-wrap items-center justify-between">
+    <div class="px-2 lg:px-4">
+      <%= primary_link(t('actions.home'), root_path) %>
+    </div>
+    <div class="px-2 lg:px-4 py-2 lg:py-0 flex">
+      <% if dark_theme? %>
+        <%= link_to cookies[:moon] ? sun_path : moon_path, data: { turbo: false } do %>
+          <div class="min-h-[38px] justify-center w-full rounded-md border border-gray-300 dark:border-secondary shadow-sm px-3 py-2 text-sm font-medium text-gray-700 bg-white dark:bg-black hover:bg-black dark:hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-ternary">
+            <%= cookies[:moon] ? '☀️' : '🌙' %>
+          </div>
+        <% end %>
+      <% end %>
+      <%= dropdown button_label_lg:  t('actions.navigation.lg'),
+                   button_label_sm:  t('actions.navigation.sm'),
+                   container_class: 'px-2',
+                   is_left:          false,
+                   is_top:           true do %>
+        <%= dropdown_link t('actions.home'), front_path, turbo: false if user_signed_in? && current_user.admin? %>
+        <%= dropdown_link t('spaces.index.title'), spaces_path, turbo: false if user_signed_in? && current_user.confirmed? %>
+        <%= dropdown_link t('spaces.new'), new_space_path, turbo: false if can? :manage, Space %>
+        <%= dropdown_link t('posts.index'), posts_path, turbo: false if can? :create, Post %>
+        <%= dropdown_link t('posts.new'), new_post_path, turbo: false if can? :create, Post %>
+        <%= dropdown_link t('users.index.title'), users_path, turbo: false if can? :manage, User %>
+        <% if user_signed_in? %>
+          <%= dropdown_link t('devise.log_out'), destroy_user_session_path, turbo: false %>
+        <% else %>
+          <%= dropdown_link t('devise.sign_up'), new_user_registration_path, turbo: false %>
+          <%= dropdown_link t('devise.log_in'), new_user_session_path, turbo: false %>
+        <% end %>
+      <% end %>
+      <%= dropdown button_label_lg:  I18n.locale.upcase,
+                   button_label_sm:  I18n.locale.upcase,
+                   is_left:          false,
+                   is_top:           true do %>
+        <% I18n.available_locales.each do |locale| %>
+          <% current_locale = locale == I18n.locale %>
+          <%= dropdown_link locale.to_s.upcase, url_for(locale: locale), turbo: false, deactivated: current_locale %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

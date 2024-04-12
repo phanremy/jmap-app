@@ -1,0 +1,67 @@
+es:
+  front:
+    sections:
+      hero: Héroe
+      banner: Bandera
+      panels: Framework
+      tiles: Características
+      faqs: Preguntas Frecuentes
+      footer: Footer
+    actions:
+      get_started: Empezar
+      privacy_policy: Política de Privacidad
+      terms_of_service: Términos de Servicio
+  pages:
+    front:
+      hero:
+        sub_title: Un template para tus proyectos con Ruby on Rails
+        title: Tu próximo proyecto comienza aquí
+        description: Lo sabemos de memoria, ¿verdad? ¡Deberías saberlo de memoria!
+                     Estos son algunos de los métodos que uno necesita usar para empezar un nuevo proyecto.
+                     Sin embargo, es una tarea repetitiva que podría obstaculizar tus capacidades para enviar de manera continua y rápida.
+                     ¡Siéntete libre de usar este template para crear tu próximo proyecto!
+        button_primary_spaces: ¡Empezar!
+        button_secondary_sign_up: ¿Dónde empezar?
+      panels:
+        title: Tu framework está aquí para servirle
+        rails_description: Ruby on Rails es un potente framework de aplicación web que sigue el patrón arquitectónico Modelo-Vista-Controlador (MVC). Construido sobre el lenguaje de programación Ruby, enfatiza la convención sobre la configuración, agilizando el desarrollo al proporcionar estructuras predeterminadas para bases de datos, servicios web y páginas web. Rails simplifica tareas comunes como la gestión de bases de datos, el enrutamiento y el manejo de formularios, lo que permite un desarrollo rápido con menos código. Su extensa biblioteca de gems mejora aún más la funcionalidad. Con su enfoque en la productividad del desarrollador y la elegancia del código, Rails es popular para construir aplicaciones web escalables y mantenibles. Su comunidad vibrante y su documentación extensa lo convierten en una opción preferida para startups y empresas establecidas.
+        ruby_description: Ruby es un lenguaje de programación dinámico y orientado a objetos conocido por su simplicidad y elegancia. Diseñado para la felicidad del desarrollador, prioriza la legibilidad y la productividad. Con su sintaxis concisa y su tipado flexible, Ruby fomenta el desarrollo rápido y fomenta un código limpio y expresivo. Ofrece características potentes como bloques, metaprogramación y mixins, permitiendo a los desarrolladores crear soluciones elegantes para problemas complejos. La vibrante comunidad de Ruby y su vasto ecosistema de bibliotecas, conocidas como "gems", proporcionan soluciones para prácticamente cualquier tarea. Ruby es una opción popular para aplicaciones web, scripting y utilidades del sistema debido a su versatilidad y facilidad de uso.
+        stimulusjs_description: StimulusJS es un framework de JavaScript desarrollado por Basecamp. Diseñado para mejorar aplicaciones HTML con un mínimo de JavaScript, se enfoca en aumentar la interactividad mediante convenciones para agregar comportamiento a elementos HTML. Utilizando atributos de datos y controladores JavaScript simples, los desarrolladores pueden crear interfaces web dinámicas y receptivas sin la complejidad de un framework de aplicación de página única completo. StimulusJS promueve un enfoque de mejora progresiva, permitiendo a los desarrolladores enriquecer gradualmente sus aplicaciones manteniendo la accesibilidad y la compatibilidad con una amplia gama de navegadores.
+      banner:
+        title: Una aplicación web progresiva (PWA) con metadatos para compartir en redes sociales y optimizada para motores de búsqueda (SEO)
+      tiles:
+        title: Explora las características de tu nuevo template
+        tile_1_title_space: '[ 🏠 ] Espacios comunitarios'
+        tile_1_description_space: Un modelo flexible y estándar creado para administrar comunidades, restaurantes, etc.
+        tile_2_title_space_user: '[ 👨‍👩‍👧‍👦 ] Membresías'
+        tile_2_description_space_user: Una forma innovadora de invitar a nuevos usuarios a través de un sistema de enlaces y hacer crecer a tus usuarios
+        tile_3_title_user: '[ 🙍‍♂️ ] Gestión de usuarios'
+        tile_3_description_user: Tablas de administración para gestionar usuarios, bloquearlos o promoverlos al rol de administrador
+        tile_4_title_yml: '[ 🌍 ] Opciones multilingües'
+        tile_4_description_yml: Traducciones listas (inglés, francés y español)
+        tile_5_title_safety: '[ 🔒 ] Autenticación y autorización'
+        tile_5_description_safety: Gemas de seguridad de última generación. Autenticación a través de Github, Google, etc.
+        tile_6_title_dark: '[ 🌙 ] Modo oscuro de la Luna (en progreso)'
+        tile_6_description_dark: Cambia entre la Luna y el Sol para gestionar Dark mode
+        tile_7_title_html: '[ 🏎️ ] Renderizado de estilo Turbostream'
+        tile_7_description_html: HTML listo y estandarizado a través de Turbostream y layouts
+        tile_8_title_css: '[ 🎨 ] CSS de estilo Tailwind'
+        tile_8_description_css: CSS listo y estandarizado a través de Tailwind
+        tile_9_title_js: '[ 🏃 ] JS de estilo Importmap'
+        tile_9_description_js: Javascript listo y estandarizado a través de Importmap
+      faqs:
+        faq_1_question_goal: ¿Cuál es el propósito principal de la app?
+        faq_1_answer_goal: La app sirve como plantilla para proyectos de Ruby on Rails. Simplifica el proceso de inicio de nuevos proyectos al proporcionar métodos estandarizados, lo que permite un desarrollo continuo y rápido.
+        faq_2_question_features: ¿Qué características ofrece la app?
+        faq_2_answer_features: El sitio web ofrece diversas características, incluida la gestión de espacios comunitarios, sistemas de membresía, herramientas de gestión de usuarios, opciones multilingües (inglés, francés y español), mecanismos de autenticación y autorización, y características futuras como el modo oscuro y la renderización de Turbostream.
+        faq_3_question_safety: ¿Puede proporcionar más detalles sobre las medidas de seguridad implementadas en la app?
+        faq_3_answer_safety: La app utiliza gemas de seguridad de última generación para la autenticación y autorización. Los usuarios pueden autenticarse a través de plataformas como GitHub, Google, etc., garantizando un acceso seguro a las funcionalidades del sitio.
+        faq_4_question_customization: ¿Hay soporte para personalización y estilismo en la app?
+        faq_4_answer_customization: Sí, la app ofrece CSS con estilo Tailwind y JavaScript con estilo Importmap para opciones de estilismo listas para usar y estandarizadas. Además, los usuarios pueden cambiar entre temas claros y oscuros con la función de modo oscuro que está por venir.
+        faq_5_question_seo: ¿Está optimizada la app para compartir en redes sociales y visibilidad en motores de búsqueda?
+        faq_5_answer_seo: Sí, la app está diseñada como una aplicación web progresiva (PWA) con metadatos específicamente optimizados para compartir en redes sociales y optimización para motores de búsqueda (SEO). Esto garantiza que, cuando se comparte en plataformas de redes sociales, el sitio aparezca con información e imágenes relevantes, y que se posicione bien en las páginas de resultados de los motores de búsqueda, aumentando así su visibilidad y alcance.
+      footer:
+        sections: Secciónes
+        links: Enlaces
+        more: Más
+        legal: Legal

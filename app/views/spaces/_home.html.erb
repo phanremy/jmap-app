@@ -1,0 +1,30 @@
+<div class="flex">
+  <%= space.description %>
+    
+  <% if can? :manage, space %>
+    <%= secondary_link(t('actions.edit'), edit_space_path(space), size: :sm) %>
+      <%= destructive_button(t('actions.delete'), space_path(space), t('spaces.destroy_confirm'), size: :sm) %>
+  <% end %>
+</div>
+<div class="py-5">
+  <%= t('owner', scope: 'activerecord.attributes.space') %>: <%= space.owner.email %>
+</div>
+<div class="py-5">
+  <%= t('users', scope: 'activerecord.attributes.space') %>:
+  <% space.users.order(confirmed: :desc).each do |user| %>
+    <br><%= user.email %> <%= "(#{t('users.not_confirmed')})" if space.unconfirmed_member?(user) %>
+  <% end %>
+</div>
+<div class="py-5">
+  <%= t('created_at', scope: 'activerecord.attributes.space') %>: <%= date(space.created_at, format: :long) %>
+</div>
+<% if can? :manage, space %>
+  <div class="border my-8 py-5 p-2">
+    <%= t('links.description') %> <br>
+    <% if current_user.available_link(space) %>
+      <%= render 'links/url', link: current_user.available_link(space) %>
+    <% else %>
+      <%= render 'links/form', disabled: false %>
+    <% end %>
+  </div>
+<% end %>

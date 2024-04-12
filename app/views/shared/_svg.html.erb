@@ -1,0 +1,5 @@
+<%= content_tag :svg, options do %>
+  <g fill="<%= g_color %>">
+    <%= render inline: Rails.root.join("app/assets/images/#{source}.svg").read %>
+  </g>
+<% end %>

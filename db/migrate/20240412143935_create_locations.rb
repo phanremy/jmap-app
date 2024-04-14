@@ -7,8 +7,7 @@ class CreateLocations < ActiveRecord::Migration[7.1]
       t.string :country, null: false
       t.string :county
       t.string :city
-      t.decimal :longitude
-      t.decimal :latitude
+      t.string :original_name
     end
 
     add_index :locations, %i[country county city], unique: true

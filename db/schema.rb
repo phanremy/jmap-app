@@ -32,8 +32,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_143956) do
     t.string "country", null: false
     t.string "county"
     t.string "city"
-    t.decimal "longitude"
-    t.decimal "latitude"
+    t.string "original_name"
     t.index ["country", "county", "city"], name: "index_locations_on_country_and_county_and_city", unique: true
   end
 
@@ -46,8 +45,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_143956) do
     t.bigint "creator_id", null: false
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.string "frequence"
+    t.string "frequency"
     t.bigint "main_id"
+    t.string "raw_address"
+    t.decimal "longitude"
+    t.decimal "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_posts_on_creator_id"

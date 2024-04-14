@@ -8,6 +8,10 @@ class Space < ApplicationRecord
   has_many :users, through: :space_users
   has_many :links, dependent: :destroy
 
+  def self.default
+    where(public: true).first
+  end
+
   def members
     users.including(owner)
   end

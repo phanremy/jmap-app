@@ -24,6 +24,10 @@ class User < ApplicationRecord
   scope :admin_query, ->(admin) { admin.blank? ? return : where(admin:) }
   scope :confirmed_query, ->(confirmed) { confirmed.blank? ? return : where(confirmed:) }
 
+  def self.default
+    find_by(email: ENV.fetch('SUPERADMIN_EMAIL', nil))
+  end
+
   def available_link(space)
     links.where(space:).where('end_date > ?', DateTime.now).first
   end

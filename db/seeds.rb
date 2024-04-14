@@ -42,6 +42,7 @@ _visitor =
 #               body: generate_sku(excluded: Space.pluck(:description)))
 # end
 
+public_space = Space.create(owner: admin, description: 'Public Space', public: true)
 space1 = Space.create(owner: creator, description: 'My Space', user_ids: [member1.id])
 _space2 = Space.create(owner: creator, description: 'My Space', user_ids: [])
 

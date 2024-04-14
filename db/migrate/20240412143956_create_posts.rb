@@ -9,10 +9,13 @@ class CreatePosts < ActiveRecord::Migration[7.1]
       t.references :location, null: true
       t.references :space, null: false, foreign_key: true
       t.references :creator, index: true, null: false, foreign_key: { to_table: :users }
+      t.datetime :starts_at
+      t.datetime :ends_at
+      t.string :frequence
+      t.references :main, index: true, foreign_key: { to_table: :posts }
+
 
       t.timestamps
     end
-
-    # index on location
   end
 end

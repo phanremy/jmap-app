@@ -51,4 +51,14 @@ _space2 = Space.create(owner: creator, description: 'My Space', user_ids: [])
 #                user_ids: [[superadmin, admin, creator, member1, member2].sample.id])
 # end
 
-Link.create(space: space1, owner: creator)
+Link.create(space: Space.first, owner: creator)
+
+Country.create(country: 'Japan')
+
+%w[Hokkaido Tohoku Kanto Chubu Kinki Chugoku Shikoku Kyushu-Okinawa].each do |county|
+  County.create(country: 'Japan', county:)
+end
+
+%w[Saitama Tokyo Gunma Tochigi Kamakura Chiba Kanagawa Kawasaki].each do |city|
+  City.create(country: 'Japan', county: 'Kanto', city: )
+end

@@ -10,5 +10,7 @@ class CreateLocations < ActiveRecord::Migration[7.1]
       t.decimal :longitude
       t.decimal :latitude
     end
+
+    add_index :locations, %i[country county city], unique: true
   end
 end

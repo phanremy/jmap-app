@@ -34,6 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_143956) do
     t.string "city"
     t.decimal "longitude"
     t.decimal "latitude"
+    t.index ["country", "county", "city"], name: "index_locations_on_country_and_county_and_city", unique: true
   end
 
   create_table "posts", force: :cascade do |t|
@@ -43,10 +44,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_143956) do
     t.bigint "location_id"
     t.bigint "space_id", null: false
     t.bigint "creator_id", null: false
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.string "frequence"
+    t.bigint "main_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["creator_id"], name: "index_posts_on_creator_id"
     t.index ["location_id"], name: "index_posts_on_location_id"
+    t.index ["main_id"], name: "index_posts_on_main_id"
     t.index ["space_id"], name: "index_posts_on_space_id"
   end
 
@@ -85,6 +91,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_143956) do
 
   add_foreign_key "links", "spaces"
   add_foreign_key "links", "users", column: "owner_id"
+  add_foreign_key "posts", "posts", column: "main_id"
   add_foreign_key "posts", "spaces"
   add_foreign_key "posts", "users", column: "creator_id"
   add_foreign_key "space_users", "spaces"

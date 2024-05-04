@@ -10,6 +10,8 @@ class CreateLocations < ActiveRecord::Migration[7.1]
       t.string :original_name
     end
 
+    add_index :locations, %i[country], unique: true, where: "((county IS NULL) AND (city IS NULL))"
+    add_index :locations, %i[country county], unique: true, where: "(city IS NULL)"
     add_index :locations, %i[country county city], unique: true
   end
 end

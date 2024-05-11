@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
     root 'pages#front'
     get '/front', to: 'pages#front'
+    get '/map', to: 'pages#map'
     get '/moon', to: 'pages#moon'
     get '/sun', to: 'pages#sun'
 

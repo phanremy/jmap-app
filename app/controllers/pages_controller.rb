@@ -8,6 +8,9 @@ class PagesController < ApplicationController
   def front
   end
 
+  def map
+  end
+
   def moon
     cookies[:moon] = { value: 'on' }
     redirect_to request.referrer || root_url

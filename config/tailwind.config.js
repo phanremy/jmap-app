@@ -11,23 +11,29 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Roboto', ...defaultTheme.fontFamily.sans], // Catamaran // Righteous
-        heading: ['Bebas Neue', ...defaultTheme.fontFamily.sans],
-        body: ['Montserrat', ...defaultTheme.fontFamily.sans]
+        heading: ['Noto Sans JP', ...defaultTheme.fontFamily.sans],
+        body: ['Kosugi Maru', ...defaultTheme.fontFamily.sans]
       },
       colors: {
         primary: { // Call to Actions (Create)
-          DEFAULT: '#FBA834',
-          darker:  '#E0962E',
-          foreground: '#000000'
+          DEFAULT: '#8E354A',
+          darker:  '#8E354A',
+          foreground: '#FFFFFF'
         },
         secondary: { // Call to Options (Edit)
-          DEFAULT: '#333A73',
-          darker:  '#2B3264',
+          DEFAULT: '#E16B8C',
+          darker:  '#E16B8C',
           foreground: '#FFFFFF'
         },
         ternary: { // Navigation Panel, no darker
-          DEFAULT: '#387ADF',
-          foreground: '#000000'
+          DEFAULT: '#F4A7B9',
+          foreground: '#8E354A'
+        },
+        black: {
+          DEFAULT: '#8E354A'
+        },
+        white: {
+          DEFAULT: '#F8C3CD'
         },
         destructive: {
           DEFAULT: '#A63030',

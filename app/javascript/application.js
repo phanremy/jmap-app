@@ -6,6 +6,7 @@ import Autosave from 'stimulus-rails-autosave'
 import ClassToggleController from 'controllers/class_toggle_controller'
 import DropdownManageController from 'controllers/dropdown_manage_controller'
 import HTMLRemoveController from 'controllers/html_remove_controller'
+import MapController from 'controllers/map_controller'
 import ModalOpenController from 'controllers/modal_open_controller'
 import ModalDisplayController from 'controllers/modal_display_controller'
 import SlimSelectController from 'controllers/slim_select_controller'
@@ -15,6 +16,7 @@ Stimulus.register('autosave', Autosave)
 Stimulus.register('class-toggle', ClassToggleController)
 Stimulus.register('dropdown-manage', DropdownManageController)
 Stimulus.register('html-remove', HTMLRemoveController)
+Stimulus.register('map', MapController)
 Stimulus.register('modal-display', ModalDisplayController)
 Stimulus.register('modal-open', ModalOpenController)
 Stimulus.register('slim-select', SlimSelectController)

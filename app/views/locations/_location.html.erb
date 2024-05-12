@@ -1,0 +1,22 @@
+<% index ||= local_assigns[:"#{location.class.to_s.downcase}_counter"] %>
+<div class="<%= class_names('table-row', index&.odd? ? 'bg-white' : 'bg-gray-50') %>">
+  <%= table_cell do %>
+    <%= t(location.type.downcase, scope: 'activerecord.attributes.location') %>
+  <% end %>
+
+  <%= table_cell do %>
+    <%= location.city %>
+  <% end %>
+
+  <%= table_cell do %>
+    <%= location.county %>
+  <% end %>
+
+  <%= table_cell do %>
+    <%= location.country %>
+  <% end %>
+
+  <%= table_cell do %>
+    <%= location.original_name %>
+  <% end %>
+</div>

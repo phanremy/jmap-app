@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'locations/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   locales = I18n.available_locales.join('|')
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
     get '/sun', to: 'pages#sun'
 
     resources :posts
+    resources :locations, only: %i[index]
     resources :spaces do
       resources :users, only: %i[create], controller: 'spaces/users'
     end

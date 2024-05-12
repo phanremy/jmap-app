@@ -54,8 +54,10 @@ _space2 = Space.create(owner: creator, description: 'My Space', user_ids: [])
 
 Link.create(space: Space.first, owner: creator)
 
-puts "Country: #{Country.count} County: #{County.count} City: #{City.count}";
-puts "Location Seed started";
-Locations::Seeds.new(country: 'Japan').create_all
-puts "Location Seed ended";
-puts "Country: #{Country.count} County: #{County.count} City: #{City.count}";
+['Japan'].each do |country|
+  puts "Country: #{Country.count} - County: #{County.count} - City: #{City.count}";
+  puts "Location Seed for #{country} started";
+  Locations::Seeds.new(country:).create_all
+  puts "Location Seed for #{country} ended";
+  puts "Country: #{Country.count} - County: #{County.count} - City: #{City.count}";
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_12_143956) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_07_073542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,7 +43,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_143956) do
     t.string "title"
     t.text "content"
     t.bigint "location_id"
-    t.bigint "space_id", null: false
     t.bigint "creator_id", null: false
     t.datetime "starts_at"
     t.datetime "ends_at"
@@ -57,7 +56,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_143956) do
     t.index ["creator_id"], name: "index_posts_on_creator_id"
     t.index ["location_id"], name: "index_posts_on_location_id"
     t.index ["main_id"], name: "index_posts_on_main_id"
-    t.index ["space_id"], name: "index_posts_on_space_id"
+  end
+
+  create_table "space_posts", force: :cascade do |t|
+    t.bigint "space_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_space_posts_on_post_id"
+    t.index ["space_id"], name: "index_space_posts_on_space_id"
   end
 
   create_table "space_users", force: :cascade do |t|
@@ -96,8 +103,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_12_143956) do
   add_foreign_key "links", "spaces"
   add_foreign_key "links", "users", column: "owner_id"
   add_foreign_key "posts", "posts", column: "main_id"
-  add_foreign_key "posts", "spaces"
   add_foreign_key "posts", "users", column: "creator_id"
+  add_foreign_key "space_posts", "posts"
+  add_foreign_key "space_posts", "spaces"
   add_foreign_key "space_users", "spaces"
   add_foreign_key "space_users", "users"
   add_foreign_key "spaces", "users", column: "owner_id"

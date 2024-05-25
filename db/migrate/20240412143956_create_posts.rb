@@ -8,7 +8,7 @@ class CreatePosts < ActiveRecord::Migration[7.1]
       t.string :title
       t.text :content
       t.references :location, null: true
-      t.references :space, null: false, foreign_key: true
+      # t.references :space, null: false, foreign_key: true
       t.references :creator, index: true, null: false, foreign_key: { to_table: :users }
       # t.jsonb :frequence_details, null: false
       t.datetime :starts_at

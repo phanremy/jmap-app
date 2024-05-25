@@ -5,7 +5,7 @@ class SpacesController < ApplicationController
   before_action :set_space, only: %i[edit show update]
 
   def index
-    @spaces = Space.accessible_by(current_ability).order(description: :asc)
+    @spaces = Space.accessible_by(current_ability).order(public: :desc, description: :asc)
     @pagy, @spaces = pagy(@spaces, items: 5)
   end
 

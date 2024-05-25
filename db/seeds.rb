@@ -43,8 +43,8 @@ _visitor =
 # end
 
 public_space = Space.create(owner: admin, description: 'Public Space', public: true)
-space1 = Space.create(owner: creator, description: 'My Space', user_ids: [member1.id])
-_space2 = Space.create(owner: creator, description: 'My Space', user_ids: [])
+space1 = Space.create(owner: creator, description: 'My Shared Space', user_ids: [member1.id])
+_space2 = Space.create(owner: creator, description: 'My Private Space', user_ids: [])
 
 # 100.times.each do |time|
 #   Space.create(owner: [superadmin, admin, creator, member1, member2].sample,

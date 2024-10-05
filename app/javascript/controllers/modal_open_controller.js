@@ -15,6 +15,6 @@ export default class extends Controller {
     if (document.getElementById('post_form_modal'))
       return
 
-    document.getElementById('main').insertAdjacentHTML('afterbegin', this.modalTarget.innerHTML)
+    document.getElementById('modal').insertAdjacentHTML('afterbegin', this.modalTarget.innerHTML)
   }
 }

@@ -2,7 +2,7 @@
   <div class="post py-5">
     <h2><%= link_to post.title, post_path(post), data: { turbo: false } %></h2>
     <div class="post__body">
-      <%= post.body %>
+      <%= post.content %>
     </div>
   </div>
 <% end %>

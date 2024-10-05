@@ -61,3 +61,10 @@ Link.create(space: Space.first, owner: creator)
   puts "Location Seed for #{country} ended";
   puts "Country: #{Country.count} - County: #{County.count} - City: #{City.count}";
 end
+
+post = Post.find_or_create_by(
+  title: 'first post',
+  creator_id: creator,
+  location: Location.first,
+  space_ids: Space.ids
+)

@@ -62,9 +62,26 @@ Link.create(space: Space.first, owner: creator)
   puts "Country: #{Country.count} - County: #{County.count} - City: #{City.count}";
 end
 
-post = Post.find_or_create_by(
-  title: 'first post',
-  creator_id: creator,
-  location: Location.first,
-  space_ids: Space.ids
-)
+initial_post_count = Post.count
+
+puts "Post count: #{initial_post_count}"
+
+(1..100).to_a.each do |sn|
+  Post.create(
+    title: "Creator post #{sn}",
+    creator: creator,
+    location: Location.all.sample,
+    space_ids: Space.ids
+  )
+end
+
+(1..50).to_a.each do |sn|
+  Post.create(
+    title: "Member1 post #{sn}",
+    creator: member1,
+    location: Location.all.sample,
+    space_ids: [space1.id]
+  )
+end
+
+puts "Post created count: #{Post.count - initial_post_count}"

@@ -1,5 +1,5 @@
 <div class="flex items-center justify-center" data-controller="modal-open">
-  <div class="md:max-w-lg sm:max-w-md rounded overflow-hidden shadow-lg mb-2 mx-1 cursor-pointer" style="min-width: 384px!important" data-action="click->modal-open#process">
+  <div class="md:max-w-lg sm:max-w-md rounded overflow-hidden shadow-lg mb-2 mx-1 cursor-pointer" style="min-width: 384px!important" data-action="click->modal-open#call">
     <div class="h-80 w-full" style="background-image:url(<%= nil %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
     </div>
     <div class="px-6 py-4">
@@ -11,12 +11,10 @@
             A Partir du <%= l(post.starts_at.to_datetime, locale: params[:locale]) %>
           <% elsif post.ends_at %>
             Avant le <%= l(post.ends_at.to_datetime, locale: params[:locale])  %>
-          <% else %>
-            <%= sanitize post.frequency %>
           <% end %>
         </div>
 
-      <div class="font-bold text-sm mb-2"><%= post.location %></div>
+      <div class="font-bold text-sm mb-2"><%= post.address %></div>
       <p class="text-gray-700 text-base mb-2" style="height:72px !important">
         <%= post.content&.truncate(100, separator: '.')%><br>
       </p>
@@ -32,18 +30,18 @@
     </div>
   </div>
   <template data-modal-open-target="modal">
-    <%#= render 'shared/modal', content: (render partial: 'posts/post',
+    <%= render 'shared/modal', content: (render partial: 'posts/post_profile',
                                                          locals: { url: post.url,
                                                                    post: post,
-                                                                   image: false,
+                                                                   image: nil,
                                                                    title: post.title,
                                                                    content: post.content,
-                                                                   location: post.location,
+                                                                   address: post.address,
                                                                    starts_at: post.starts_at,
                                                                    ends_at: post.ends_at,
                                                                    frequency: post.frequency,
-                                                                   description: false,
-                                                                   tags: false
+                                                                   description: nil,
+                                                                   tags: []
                                                                  }) %>
   </template>
 </div>

@@ -9,6 +9,7 @@ class PagesController < ApplicationController
   end
 
   def map
+    # @posts = Post.accessible_by(current_ability).order(created_at: :desc)
   end
 
   def moon

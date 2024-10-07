@@ -7,11 +7,11 @@ Rails.application.routes.draw do
     devise_for :users
 
     authenticated :user, lambda {|u| u.admin? } do
-      root to: 'users#index', as: :admin_root
+      root to: 'pages#map', as: :admin_root
     end
 
     authenticated do
-      root to: 'spaces#index', as: :authenticated_root
+      root to: 'pages#map', as: :authenticated_root
     end
 
     root 'pages#front'

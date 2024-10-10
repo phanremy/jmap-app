@@ -6,17 +6,16 @@
     </div>
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2" style="height:56px !important" ><%= post.title&.truncate(50) %></div>
-        <div class="font-bold text-sm mb-2">
-          <% if post.starts_at && post.ends_at %>
-            Du <%= l(post.starts_at.to_datetime, locale: params[:locale]) %> au <%= l(post.ends_at.to_datetime, locale: params[:locale]) %>
-          <% elsif post.starts_at %>
-            A Partir du <%= l(post.starts_at.to_datetime, locale: params[:locale]) %>
-          <% elsif post.ends_at %>
-            Avant le <%= l(post.ends_at.to_datetime, locale: params[:locale])  %>
-          <% end %>
-        </div>
-
       <div class="font-bold text-sm mb-2"><%= post.address %></div>
+      <div class="font-bold text-sm mb-2">
+        <% if post.starts_at && post.ends_at %>
+          From <%= l(post.starts_at.to_date, format: :short, locale: params[:locale]) %> to <%= l(post.ends_at.to_date, format: :short, locale: params[:locale]) %>
+        <% elsif post.starts_at %>
+          From <%= l(post.starts_at.to_date, format: :short, locale: params[:locale]) %>
+        <% elsif post.ends_at %>
+          To <%= l(post.ends_at.to_date, format: :short, locale: params[:locale])  %>
+        <% end %>
+      </div>
       <p class="text-gray-700 text-base mb-2" style="height:72px !important">
         <%= post.content&.truncate(100, separator: '.')%><br>
       </p>

@@ -8,11 +8,7 @@
     <%= render @spaces %>
     <% if @pagy.next %>
       <%= turbo_frame_tag :spaces, loading: :lazy, src: spaces_path(only_path: false, params: { page: @pagy.next }.merge(request.query_parameters.except(:page))) do %>
-        <div class="flex justify-center items-center">
-          <div class="w-1/2">
-            <%= render partial: 'shared/spinner' %>
-          </div>
-        </div>
+        <%= render partial: 'shared/spinner' %>
       <% end %>
     <% end %>
   <% end %>

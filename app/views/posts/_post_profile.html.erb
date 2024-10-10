@@ -3,16 +3,16 @@
     <img class="lg:w-1/2 hero-picture-height sm:w-full items-start" src="<%= url %>" alt="">
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2"><%= title %></div>
+      <div class="font-bold text-sm mb-2"><%= address %></div>
       <div class="font-bold text-sm mb-2">
         <% if starts_at && ends_at %>
-          Du <%= l(starts_at.to_datetime, locale: params[:locale]) %> au <%= l(ends_at.to_datetime, locale: params[:locale]) %>
+          From <%= l(starts_at.to_date, format: :short, locale: params[:locale]) %> to <%= l(ends_at.to_date, format: :short, locale: params[:locale]) %>
         <% elsif starts_at %>
-          A partir du <%= l(starts_at.to_datetime, locale: params[:locale]) %>
+          From <%= l(starts_at.to_date, format: :short, locale: params[:locale]) %>
         <% elsif ends_at %>
-          Avant le <%= l(ends_at.to_datetime, locale: params[:locale])  %>
+          To <%= l(ends_at.to_date, format: :short, locale: params[:locale])  %>
         <% end %>
       </div>
-      <div class="font-bold text-sm mb-2"><%= address %></div>
       <% if tags %>
         <div class="flex flex-wrap pt-2">
           <% tags.each do |tag| %>

@@ -19,6 +19,7 @@ class Location < ApplicationRecord
   scope :search_query, lambda { |search|
     return if search.blank?
 
+    # TODO: should work with special characters (Tōkyō)
     where(arel_table[:country].matches("%#{I18n.transliterate(search)}%"))
       .or(where(arel_table[:county].matches("%#{I18n.transliterate(search)}%")))
       .or(where(arel_table[:city].matches("%#{I18n.transliterate(search)}%")))
@@ -26,7 +27,7 @@ class Location < ApplicationRecord
   }
 
   def address
-    type_info = " (#{type})" unless type == 'City'
+    type_info = type == 'City' ? " - #{county}" : " (#{type})"
     [send(type.downcase), type_info].join
   end
 end

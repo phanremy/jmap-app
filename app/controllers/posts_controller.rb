@@ -6,6 +6,10 @@ class PostsController < ApplicationController
 
   def index
     @posts = posts_query
+    @posts_count = @posts.size
+    @locations_data = Location.accessible_by(current_ability)
+                              .order(:id)
+                              .map { |location| [location.address, location.id] }
     @pagy, @posts = pagy(@posts, items: 20)
   end
 
@@ -51,7 +55,10 @@ class PostsController < ApplicationController
   private
 
   def posts_query
-    Post.accessible_by(current_ability).order(created_at: :desc)
+    Post.accessible_by(current_ability)
+        .includes(:location, :spaces)
+        .location_query(params[:location_id])
+        .order(created_at: :desc)
   end
 
   def post_params

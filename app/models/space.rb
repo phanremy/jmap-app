@@ -5,8 +5,9 @@ class Space < ApplicationRecord
   belongs_to :owner, class_name: 'User', foreign_key: :owner_id
   validates :description, presence: true, uniqueness: { scope: :owner_id }
   has_many :space_users, dependent: :destroy
-  has_many :posts, dependent: :destroy
+  has_many :space_posts, dependent: :destroy
   has_many :users, through: :space_users
+  has_many :posts, through: :space_posts
   has_many :links, dependent: :destroy
 
   def self.default

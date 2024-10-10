@@ -1,11 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-include Sku
+require 'faker'
+
+def random_date
+  random = (0..9).to_a
+  date = Date.today
+  random.sample.times do |_i|
+    date += (random.sample.year * -1) + random.sample.month + random.sample.day + random.sample.hour
+  end
+  date
+end
+
+puts "### User Seed started";
 
 superadmin =
   User.create_with(password: 'password')
@@ -26,6 +30,8 @@ _visitor =
   User.create_with(password: 'password')
       .find_or_create_by(email: 'visitor@example.com', confirmed: false)
 
+puts "### User Seed ended";
+
 # (4..99).to_a.each do |time|
 #   User.create_with(password: 'password')
 #       .find_or_create_by(email: "user#{time}@example.com",
@@ -36,11 +42,15 @@ _visitor =
 # _post1 = Post.create(title: 'SuperAdmin\'s first post', body: 'This is the first post of the super admin', user: superadmin)
 # _post2 = Post.create(title: 'Admin\'s first post', body: 'This is the first post of the admin', user: admin)
 
+# include Sku
 # 100.times.each do |time|
 #   Post.create(user: [superadmin, admin, creator, member1, member2].sample,
 #               title: Faker::Creature::Animal.name,
 #               body: generate_sku(excluded: Space.pluck(:description)))
 # end
+
+
+puts "### Space Seed started";
 
 public_space = Space.create(owner: admin, description: 'Public Space', public: true)
 space1 = Space.create(owner: creator, description: 'My Shared Space', user_ids: [member1.id])
@@ -54,10 +64,60 @@ _space2 = Space.create(owner: creator, description: 'My Private Space', user_ids
 
 Link.create(space: Space.first, owner: creator)
 
+puts "### Space Seed ended";
+
+puts "### Location Seed started";
 ['Japan'].each do |country|
-  puts "Country: #{Country.count} - County: #{County.count} - City: #{City.count}";
-  puts "Location Seed for #{country} started";
+  initial_country_count = Country.count
+  initial_county_count = County.count
+  initial_city_count = City.count
+  puts "Initial location count for Country: #{initial_country_count} - " \
+       "County: #{initial_county_count} - " \
+       "City: #{initial_city_count}";
+  puts "# Location Seed for #{country} started";
   Locations::Seeds.new(country:).create_all
-  puts "Location Seed for #{country} ended";
-  puts "Country: #{Country.count} - County: #{County.count} - City: #{City.count}";
+  puts "# Location Seed for #{country} ended";
+  puts "Created count location for Country: #{Country.count - initial_country_count} - " \
+       "County: #{County.count - initial_county_count} - " \
+       "City: #{City.count - initial_city_count}";
 end
+
+puts "### Location Seed ended";
+
+
+puts "### Post Seed started";
+
+initial_post_count = Post.count
+
+puts "Initial post count: #{initial_post_count}"
+
+(1..100).to_a.each do |sn|
+  Post.create(
+    title: "Creator post #{sn}",
+    creator: creator,
+    location: Location.all.sample,
+    content: Faker::Quote.matz,
+    starts_at: [random_date, nil].sample,
+    ends_at: [random_date, nil].sample,
+    frequency: [Post::FREQUENCIES.sample, nil].sample,
+    space_ids: Space.ids
+  )
+end
+
+(1..50).to_a.each do |sn|
+  Post.create(
+    title: "Member1 post #{sn}",
+    creator: member1,
+    location: Location.all.sample,
+    content: Faker::Quote.matz,
+    url: Faker::Internet.domain_name,
+    starts_at: [random_date, nil].sample,
+    ends_at: [random_date, nil].sample,
+    frequency: [Post::FREQUENCIES.sample, nil].sample,
+    space_ids: [space1.id]
+  )
+end
+
+puts "Created post count: #{Post.count - initial_post_count}"
+
+puts "### Post Seed ended";

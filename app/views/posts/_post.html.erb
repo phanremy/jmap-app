@@ -1,8 +1,56 @@
-<%= turbo_frame_tag dom_id(post) do %>
-  <div class="post py-5">
-    <h2><%= link_to post.title, post_path(post), data: { turbo: false } %></h2>
-    <div class="post__body">
-      <%= post.body %>
+<%# url = post.url.presence || 'https://picsum.photos/200/200?random=1' %>
+<% url = 'https://picsum.photos/200/200?random=1' %>
+<div class="flex items-center justify-center" data-controller="modal-open">
+  <div class="md:max-w-lg sm:max-w-md rounded overflow-hidden shadow-lg mb-2 mx-1 cursor-pointer" style="min-width: 384px!important" data-action="click->modal-open#call">
+    <div class="h-80 w-full" style="background-image:url(<%= url %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
+    </div>
+    <div class="px-6 py-4">
+      <div class="font-bold text-xl mb-2" style="height:56px !important" ><%= post.title&.truncate(50) %></div>
+        <div class="font-bold text-sm mb-2">
+          <% if post.starts_at && post.ends_at %>
+            Du <%= l(post.starts_at.to_datetime, locale: params[:locale]) %> au <%= l(post.ends_at.to_datetime, locale: params[:locale]) %>
+          <% elsif post.starts_at %>
+            A Partir du <%= l(post.starts_at.to_datetime, locale: params[:locale]) %>
+          <% elsif post.ends_at %>
+            Avant le <%= l(post.ends_at.to_datetime, locale: params[:locale])  %>
+          <% end %>
+        </div>
+
+      <div class="font-bold text-sm mb-2"><%= post.address %></div>
+      <p class="text-gray-700 text-base mb-2" style="height:72px !important">
+        <%= post.content&.truncate(100, separator: '.')%><br>
+      </p>
+      <% if false %>
+        <div class="flex flex-wrap pt-2">
+          <% tags.each do |tag| %>
+            <span class="bg-gray-300 rounded-full px-2 py-1 mb-2 mr-2">
+              <%= tag %>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="flex flex-wrap pt-2">
+        <% post.spaces.each do |space| %>
+          <span class="rounded-full px-2 py-1 mb-2 mr-2">
+            <%= space.description %>
+          </span>
+        <% end %>
+      </div>
     </div>
   </div>
-<% end %>
+  <template data-modal-open-target="modal">
+    <%= render 'shared/modal', content: (render partial: 'posts/post_profile',
+                                                         locals: { url: url,
+                                                                   post: post,
+                                                                   image: nil,
+                                                                   title: post.title,
+                                                                   content: post.content,
+                                                                   address: post.address,
+                                                                   starts_at: post.starts_at,
+                                                                   ends_at: post.ends_at,
+                                                                   frequency: post.frequency,
+                                                                   description: nil,
+                                                                   tags: []
+                                                                 }) %>
+  </template>
+</div>

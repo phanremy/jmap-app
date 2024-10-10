@@ -24,4 +24,9 @@ class Location < ApplicationRecord
       .or(where(arel_table[:city].matches("%#{I18n.transliterate(search)}%")))
       .or(where(arel_table[:original_name].matches("%#{I18n.transliterate(search)}%")))
   }
+
+  def address
+    type_info = " (#{type})" unless type == 'City'
+    [send(type.downcase), type_info].join
+  end
 end

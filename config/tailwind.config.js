@@ -29,12 +29,12 @@ module.exports = {
           DEFAULT: '#F4A7B9',
           foreground: '#8E354A'
         },
-        black: {
-          DEFAULT: '#8E354A'
-        },
-        white: {
-          DEFAULT: '#F8C3CD'
-        },
+        // black: {
+        //   DEFAULT: '#8E354A'
+        // },
+        // white: {
+        //   DEFAULT: '#F8C3CD'
+        // },
         destructive: {
           DEFAULT: '#A63030',
           darker:  '#7F2424',

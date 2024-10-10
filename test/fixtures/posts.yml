@@ -2,10 +2,10 @@ one:
   title: MyString
   content: MyText
   creator: admin
-  space: default
+  location: one
 
 two:
   title: MyString
   content: MyText
   creator: admin
-  space: default
+  location: two

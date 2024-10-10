@@ -9,9 +9,7 @@ class SpacesController < ApplicationController
     @pagy, @spaces = pagy(@spaces, items: 5)
   end
 
-  def show
-    @posts = @space.posts
-  end
+  def show; end
 
   def new
     @space = Space.new

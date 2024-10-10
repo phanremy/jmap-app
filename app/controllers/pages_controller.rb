@@ -5,12 +5,10 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!
   skip_authorization_check
 
-  def front
-  end
+  def front; end
 
-  def map
-    # @posts = Post.accessible_by(current_ability).order(created_at: :desc)
-  end
+  def map; end
+  # @posts = Post.accessible_by(current_ability).order(created_at: :desc)
 
   def moon
     cookies[:moon] = { value: 'on' }

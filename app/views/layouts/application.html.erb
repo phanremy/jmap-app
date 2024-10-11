@@ -47,12 +47,6 @@
         <%= render 'shared/flash' %>
       <% end %>
     </div>
-    <% if front_page? %>
-      <%= yield %>
-    <% else %>
-      <%#= render layout: 'shared/container' do %>
-        <%= yield %>
-      <%# end %>
-    <% end %>
+    <%= yield %>
   </body>
 </html>

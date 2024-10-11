@@ -1,8 +1,8 @@
 <%# url = post.url.presence || 'https://picsum.photos/200/200?random=1' %>
-<% url = 'https://picsum.photos/200/200?random=1' %>
+<% photo_url = 'https://picsum.photos/200/200?random=1' %>
 <div class="flex items-center justify-center" data-controller="modal-open">
   <div class="md:max-w-lg sm:max-w-md rounded overflow-hidden shadow-lg mb-2 mx-1 cursor-pointer" style="min-width: 384px!important" data-action="click->modal-open#call">
-    <div class="h-80 w-full" style="background-image:url(<%= url %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <div class="h-80 w-full" style="background-image:url(<%= photo_url %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
     </div>
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2" style="height:56px !important" ><%= post.title&.truncate(50) %></div>
@@ -39,8 +39,9 @@
   </div>
   <template data-modal-open-target="modal">
     <%= render 'shared/modal', content: (render partial: 'posts/post_profile',
-                                                         locals: { url: url,
-                                                                   post: post,
+                                                         locals: { url: post.url,
+                                                                   photo_url:,
+                                                                   post:,
                                                                    image: nil,
                                                                    title: post.title,
                                                                    content: post.content,

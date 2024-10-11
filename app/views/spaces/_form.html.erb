@@ -8,7 +8,7 @@
     <div class="flex my-8 items-center justify-between">
       <%= form.label :users, class: "relative", style: "top: 0px; transform: none !important;" %>
       <%= form.select(:user_ids,
-                      User.excluding(@space.owner).order(:email).pluck(:email, :id),
+                      @users_data,
                       {},
                       { data:     { controller:  "slim-select",
                                     placeholder: t('actions.search'),

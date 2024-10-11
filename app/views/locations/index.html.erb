@@ -1,17 +1,20 @@
-<%= render 'locations/search_and_filter' %>
-<%= render layout: 'shared/table/main', locals: {
-                                          pagy: @pagy,
-                                          class_name: 'location',
-                                          any_collection: @locations.count.positive?
-                                        } do %>
-  <div class="table-row">
-    <%= table_header { sort_link_to(t('type', scope: 'activerecord.attributes.location'), 'type', @search_params) } %>
-    <%= table_header { sort_link_to(t('city', scope: 'activerecord.attributes.location'), 'city', @search_params) } %>
-    <%= table_header { sort_link_to(t('county', scope: 'activerecord.attributes.location'), 'county', @search_params) } %>
-    <%= table_header { sort_link_to(t('country', scope: 'activerecord.attributes.location'), 'country', @search_params) } %>
-    <%= table_header { sort_link_to(t('original_name', scope: 'activerecord.attributes.location'), 'original_name', @search_params) } %>
-    <div class="table-cell bg-gray-50"></div>
-  </div>
+<%= render 'shared/top_margin' %>
+<%= render layout: 'shared/container' do %>
+  <%= render 'locations/search_and_filter' %>
+  <%= render layout: 'shared/table/main', locals: {
+                                            pagy: @pagy,
+                                            class_name: 'location',
+                                            any_collection: @locations.count.positive?
+                                          } do %>
+    <div class="table-row">
+      <%= table_header { sort_link_to(t('type', scope: 'activerecord.attributes.location'), 'type', @search_params) } %>
+      <%= table_header { sort_link_to(t('city', scope: 'activerecord.attributes.location'), 'city', @search_params) } %>
+      <%= table_header { sort_link_to(t('county', scope: 'activerecord.attributes.location'), 'county', @search_params) } %>
+      <%= table_header { sort_link_to(t('country', scope: 'activerecord.attributes.location'), 'country', @search_params) } %>
+      <%= table_header { sort_link_to(t('original_name', scope: 'activerecord.attributes.location'), 'original_name', @search_params) } %>
+      <div class="table-cell bg-gray-50"></div>
+    </div>
 
-  <%= render partial: 'locations/location', collection: @locations %>
+    <%= render partial: 'locations/location', collection: @locations %>
+  <% end %>
 <% end %>

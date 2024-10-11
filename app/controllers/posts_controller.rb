@@ -15,14 +15,14 @@ class PostsController < ApplicationController
 
   def show; end
 
-  def edit; end
-
   def new
     @post = Post.new
+    set_locations_data
   end
 
   def create
     @post = Post.new(post_params)
+    @post.creator = current_user
     if @post.save
       flash[:success] = I18n.t('posts.create_success')
       redirect_to @post
@@ -30,6 +30,10 @@ class PostsController < ApplicationController
       flash.now[:error] = @post.errors.full_messages
       render_flash
     end
+  end
+
+  def edit
+    set_locations_data
   end
 
   def update
@@ -62,10 +66,16 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, :user_id)
+    params.require(:post).permit(:title, :content, :url, :location_id)
   end
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_locations_data
+    @locations_data = Location.accessible_by(current_ability)
+                              .order(:id)
+                              .map { |location| [location.address, location.id] }
   end
 end

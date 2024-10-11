@@ -22,4 +22,8 @@ class Post < ApplicationRecord
   validates :frequency, inclusion: { in: Post::FREQUENCIES, allow_blank: true }
 
   delegate :address, to: :location
+
+  def parsed_metadata
+    ::Posts::Parse.new(url).metadata
+  end
 end

@@ -13,7 +13,9 @@ class PostsController < ApplicationController
     @pagy, @posts = pagy(@posts, items: 20)
   end
 
-  def show; end
+  def show
+    @metadata = @post.parsed_metadata
+  end
 
   def new
     @post = Post.new

@@ -15,14 +15,7 @@ class Post < ApplicationRecord
   scope :location_query, lambda { |location_id|
     return if location_id.blank?
 
-    location = Location.find(location_id)
-
-    where(
-      location: Location.where(
-        country:                     location.country,
-        "#{location.type.downcase}": location.send(location.type.downcase)
-      )
-    )
+    Post.where(location: Location.associated(location_id))
   }
 
   validates :title, :content, presence: true, allow_blank: true

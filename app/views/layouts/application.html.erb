@@ -50,9 +50,9 @@
     <% if front_page? %>
       <%= yield %>
     <% else %>
-      <%= render layout: 'shared/container' do %>
+      <%#= render layout: 'shared/container' do %>
         <%= yield %>
-      <% end %>
+      <%# end %>
     <% end %>
   </body>
 </html>

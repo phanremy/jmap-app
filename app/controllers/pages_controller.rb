@@ -8,7 +8,6 @@ class PagesController < ApplicationController
   def front; end
 
   def map; end
-  # @posts = Post.accessible_by(current_ability).order(created_at: :desc)
 
   def moon
     cookies[:moon] = { value: 'on' }

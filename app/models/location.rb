@@ -16,17 +16,25 @@ class Location < ApplicationRecord
   scope :order_by_type, ->(direction = :asc) { order(type: direction) }
   scope :order_by_original_name, ->(direction = :asc) { order(original_name: direction) }
   scope :type_query, ->(type) { type.blank? ? return : where(type:) }
-  scope :search_query, lambda { |search|
-    return if search.blank?
+  scope :search_query, lambda { |query|
+    return if query.blank?
 
-    where(arel_table[:country].matches("%#{I18n.transliterate(search)}%"))
-      .or(where(arel_table[:county].matches("%#{I18n.transliterate(search)}%")))
-      .or(where(arel_table[:city].matches("%#{I18n.transliterate(search)}%")))
-      .or(where(arel_table[:original_name].matches("%#{I18n.transliterate(search)}%")))
+    where('UNACCENT(locations.country) ILIKE :query OR
+           UNACCENT(locations.county) ILIKE :query OR
+           UNACCENT(locations.city) ILIKE :query OR
+           UNACCENT(locations.original_name) ILIKE :query', query: "%#{I18n.transliterate(query)}%")
   }
 
   def address
-    type_info = " (#{type})" unless type == 'City'
+    type_info = type == 'City' ? " - #{county}" : " (#{type})"
     [send(type.downcase), type_info].join
+  end
+
+  def self.associated(id)
+    country, county, city = where(id:).pick(:country, :county, :city)
+
+    where(type: 'Country', country:)
+      .or(where(type: 'County', country:, county:))
+      .or(where(type: 'City', country:, county:, city:))
   end
 end

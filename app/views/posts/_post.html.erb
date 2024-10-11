@@ -1,22 +1,21 @@
 <%# url = post.url.presence || 'https://picsum.photos/200/200?random=1' %>
-<% url = 'https://picsum.photos/200/200?random=1' %>
+<% photo_url = 'https://picsum.photos/200/200?random=1' %>
 <div class="flex items-center justify-center" data-controller="modal-open">
   <div class="md:max-w-lg sm:max-w-md rounded overflow-hidden shadow-lg mb-2 mx-1 cursor-pointer" style="min-width: 384px!important" data-action="click->modal-open#call">
-    <div class="h-80 w-full" style="background-image:url(<%= url %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <div class="h-80 w-full" style="background-image:url(<%= photo_url %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
     </div>
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2" style="height:56px !important" ><%= post.title&.truncate(50) %></div>
-        <div class="font-bold text-sm mb-2">
-          <% if post.starts_at && post.ends_at %>
-            Du <%= l(post.starts_at.to_datetime, locale: params[:locale]) %> au <%= l(post.ends_at.to_datetime, locale: params[:locale]) %>
-          <% elsif post.starts_at %>
-            A Partir du <%= l(post.starts_at.to_datetime, locale: params[:locale]) %>
-          <% elsif post.ends_at %>
-            Avant le <%= l(post.ends_at.to_datetime, locale: params[:locale])  %>
-          <% end %>
-        </div>
-
       <div class="font-bold text-sm mb-2"><%= post.address %></div>
+      <div class="font-bold text-sm mb-2">
+        <% if post.starts_at && post.ends_at %>
+          From <%= l(post.starts_at.to_date, format: :short, locale: params[:locale]) %> to <%= l(post.ends_at.to_date, format: :short, locale: params[:locale]) %>
+        <% elsif post.starts_at %>
+          From <%= l(post.starts_at.to_date, format: :short, locale: params[:locale]) %>
+        <% elsif post.ends_at %>
+          To <%= l(post.ends_at.to_date, format: :short, locale: params[:locale])  %>
+        <% end %>
+      </div>
       <p class="text-gray-700 text-base mb-2" style="height:72px !important">
         <%= post.content&.truncate(100, separator: '.')%><br>
       </p>
@@ -40,8 +39,9 @@
   </div>
   <template data-modal-open-target="modal">
     <%= render 'shared/modal', content: (render partial: 'posts/post_profile',
-                                                         locals: { url: url,
-                                                                   post: post,
+                                                         locals: { url: post.url,
+                                                                   photo_url:,
+                                                                   post:,
                                                                    image: nil,
                                                                    title: post.title,
                                                                    content: post.content,

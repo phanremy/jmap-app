@@ -12,6 +12,12 @@ class Post < ApplicationRecord
   # before_validation { self.space ||= Space.default }
   before_validation { self.creator ||= User.default }
 
+  scope :location_query, lambda { |location_id|
+    return if location_id.blank?
+
+    Post.where(location: Location.associated(location_id))
+  }
+
   validates :title, :content, presence: true, allow_blank: true
   validates :frequency, inclusion: { in: Post::FREQUENCIES, allow_blank: true }
 

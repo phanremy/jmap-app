@@ -1,23 +1,4 @@
-<%= form_with model: @user, builder: TailwindBuilder do |form| %>
-  <div class="relative my-8 border-b-2 focus-within:border-secondary">
-    <%= form.email_field :email, autocomplete: "email", placeholder: " " %>
-    <%= form.label :email %>
-  </div>
-  <div class="relative my-8 border-b-2 focus-within:border-secondary">
-    <%= form.password_field :password, autocomplete: "new-password", placeholder: " " %>
-    <%= form.label :password %>
-  </div>
-    <div class="relative my-8 border-b-2 focus-within:border-secondary">
-    <%= form.password_field :password_confirmation, autocomplete: "new-password", placeholder: " " %>
-    <%= form.label :password_confirmation %>
-  </div>
-  <div class="flex relative my-8 justify-start items-center">
-    <%= form.check_box :admin %>
-    <%= form.label :admin, class: "ml-6 text-xs", style: "top: 0px; transform: none !important;" %>
-  </div>
-    <div class="flex relative my-8 justify-start items-center">
-    <%= form.check_box :confirmed %>
-    <%= form.label :confirmed, class: "ml-6 text-xs", style: "top: 0px; transform: none !important;" %>
-  </div>
-  <%= form.submit t('actions.submit') %>
+<%= render 'shared/top_margin' %>
+<%= render layout: 'shared/container' do %>
+  <%= render 'form' %>
 <% end %>

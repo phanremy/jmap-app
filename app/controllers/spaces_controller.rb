@@ -14,6 +14,7 @@ class SpacesController < ApplicationController
   def new
     @space = Space.new
     @space.owner = current_user
+    set_users_data
   end
 
   def create
@@ -28,7 +29,9 @@ class SpacesController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    set_users_data
+  end
 
   def update
     if @space.update(space_params)
@@ -52,11 +55,15 @@ class SpacesController < ApplicationController
 
   private
 
+  def space_params
+    params.require(:space).permit(:description, user_ids: [])
+  end
+
   def set_space
     @space = Space.find(params[:id])
   end
 
-  def space_params
-    params.require(:space).permit(:description, user_ids: [])
+  def set_users_data
+    @users_data = User.excluding(@space.owner).order(:email).pluck(:email, :id)
   end
 end

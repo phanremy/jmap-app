@@ -1,17 +1,20 @@
-<%= render 'users/search_and_filter' %>
-<%= render layout: 'shared/table/main', locals: {
-                                          pagy: @pagy,
-                                          class_name: 'user',
-                                          any_collection: @users.count.positive?
-                                        } do %>
-  <div class="table-row">
-    <%= table_header { sort_link_to(t('email', scope: 'activerecord.attributes.user'), 'email', @search_params) } %>
-    <%= table_header { t('users.index.spaces_count') } %>
-    <%= table_header { sort_link_to(t('admin', scope: 'activerecord.attributes.user'), 'admin', @search_params) } %>
-    <%= table_header { sort_link_to(t('confirmed', scope: 'activerecord.attributes.user'), 'confirmed', @search_params) } %>
-    <%= table_header { t('users.index.actions') } %>
-    <div class="table-cell bg-gray-50"></div>
-  </div>
+<%= render 'shared/top_margin' %>
+<%= render layout: 'shared/container' do %>
+  <%= render 'users/search_and_filter' %>
+  <%= render layout: 'shared/table/main', locals: {
+                                            pagy: @pagy,
+                                            class_name: 'user',
+                                            any_collection: @users.count.positive?
+                                          } do %>
+    <div class="table-row">
+      <%= table_header { sort_link_to(t('email', scope: 'activerecord.attributes.user'), 'email', @search_params) } %>
+      <%= table_header { t('users.index.spaces_count') } %>
+      <%= table_header { sort_link_to(t('admin', scope: 'activerecord.attributes.user'), 'admin', @search_params) } %>
+      <%= table_header { sort_link_to(t('confirmed', scope: 'activerecord.attributes.user'), 'confirmed', @search_params) } %>
+      <%= table_header { t('users.index.actions') } %>
+      <div class="table-cell bg-gray-50"></div>
+    </div>
 
-  <%= render partial: 'users/user', collection: @users %>
+    <%= render partial: 'users/user', collection: @users %>
+  <% end %>
 <% end %>

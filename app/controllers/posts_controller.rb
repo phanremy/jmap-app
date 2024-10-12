@@ -13,9 +13,7 @@ class PostsController < ApplicationController
     @pagy, @posts = pagy(@posts, items: 20)
   end
 
-  def show
-    @metadata = @post.parsed_metadata
-  end
+  def show; end
 
   def new
     @post = Post.new
@@ -25,11 +23,13 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.creator = current_user
+    @post.parse_metadata
+
     if @post.save
       flash[:success] = I18n.t('posts.create_success')
       redirect_to @post
     else
-      flash.now[:error] = @post.errors.full_messages
+      flash.now[:error] = @post.metadata_errors || @post.errors.full_messages
       render_flash
     end
   end
@@ -68,7 +68,8 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :description, :link_url, :location_id)
+    # params.require(:post).permit(:title, :description, :link_url, :location_id)
+    params.require(:post).permit(:link_url)
   end
 
   def set_post

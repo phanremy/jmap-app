@@ -25,7 +25,7 @@ class User < ApplicationRecord
   scope :confirmed_query, ->(confirmed) { confirmed.blank? ? return : where(confirmed:) }
 
   def self.default
-    find_by(email: ENV.fetch('SUPERADMIN_EMAIL', nil))
+    find_by(email: ENV.fetch('DEFAULT_EMAIL', nil))
   end
 
   def available_link(space)

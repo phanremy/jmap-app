@@ -14,13 +14,17 @@ module Posts
     end
 
     def metadata
-      return 'URL not recognized' unless URLS.keys.any? { |www| link_url.starts_with?(www.to_s) }
+      return url_not_recognized_error unless URLS.keys.any? { |www| link_url.starts_with?(www.to_s) }
 
       method = URLS.find { |www, _value| link_url.starts_with?(www.to_s) }.last
 
       method_class = "Posts::Parses::#{method}".constantize
 
       method_class.new(link_url).metadata
+    end
+
+    def url_not_recognized_error
+      { metadata_errors: 'URL not recognized' }
     end
   end
 end

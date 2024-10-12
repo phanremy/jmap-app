@@ -1,31 +1,9 @@
 <div class="w-auto lg:w-1/2">
-  <%= form_with model: @post, builder: TailwindBuilder, data: { turbo: false } do |form| %>
+  <%= form_with model: @post, builder: TailwindBuilder do |form| %>
     <div class="relative my-8 border-b-2 focus-within:border-secondary">
-      <%= form.text_field :link_url, placeholder: "https://" %>
+      <%= form.text_field :link_url, placeholder: "" %>
       <%= form.label :link_url %>
     </div>
-    <div class="relative my-8 border-b-2 focus-within:border-secondary">
-      <%= form.text_field :title, placeholder: " " %>
-      <%= form.label :title %>
-    </div>
-    <div class="relative my-8 border-b-2 focus-within:border-secondary">
-      <%= form.text_area :description, placeholder: " " %>
-      <%= form.label :description %>
-    </div>
-    <div class="flex my-8 items-center justify-between">
-      <%= form.label :location, class: "relative", style: "top: 0px; transform: none !important;" %>
-      <%= form.select(:location_id,
-                      @locations_data,
-                      {},
-                      { data:     { controller:  "slim-select",
-                                    placeholder: t('actions.search'),
-                                    "no-result": t('alert.none', class_name: t('location', scope: 'activerecord.models').pluralize.downcase)  },
-                        multiple: false,
-                        class:    "w-full lg:w-1/2 ml-6" }) %>
-    </div>
-    <% if @post.link_url.present? %>
-      test
-    <% end %>
     <div class="field">
       <%= form.submit t('actions.submit') %>
     </div>

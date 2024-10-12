@@ -90,7 +90,9 @@ fr:
     attributes:
       post:
         title: Titre
-        body: Contenu
+        description: Description
+        link_url: Link
+        location: Localisation
       space:
         description: Description
         owner: Admin

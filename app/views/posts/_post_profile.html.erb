@@ -61,6 +61,13 @@
           <%# end %>
         <% end %>
       </div>
+      <div class="flex flex-wrap pt-2">
+        <% post.spaces.each do |space| %>
+          <span class="rounded-full px-2 py-1 mb-2 mr-2">
+            <%= space.description %>
+          </span>
+        <% end %>
+      </div>
       <% if false && link_url %>
         <iframe src="<%= link_url %>embed/" title="post player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       <% end %>

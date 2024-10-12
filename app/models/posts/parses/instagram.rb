@@ -14,15 +14,16 @@ module Posts
 
       # https://www.instagram.com/p/DA48CW4vReM/
       def metadata
-        html = URI.open(link_url).read
+        html = URI.parse(link_url).open.read
         doc = Nokogiri::HTML(html)
 
         title = doc.at('title')&.text
         image_url = doc.at("meta[property='og:image']")&.[]('content')
         description = doc.at("meta[name='description']")&.[]('content') ||
                       doc.at("meta[property='og:description']")&.[]('content')
+        location = Location.first
 
-        { title:, image_url:, description:}
+        { title:, image_url:, description:, location: }
       end
     end
   end

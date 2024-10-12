@@ -87,7 +87,9 @@ en:
     attributes:
       post:
         title: Title
-        body: Body
+        description: Description
+        link_url: Link
+        location: Location
       space:
         description: Description
         owner_id: Admin

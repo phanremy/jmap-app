@@ -1,11 +1,11 @@
 one:
   title: MyString
-  content: MyText
+  description: MyText
   creator: admin
   location: one
 
 two:
   title: MyString
-  content: MyText
+  description: MyText
   creator: admin
   location: two

@@ -18,12 +18,12 @@ class Post < ApplicationRecord
     Post.where(location: Location.associated(location_id))
   }
 
-  validates :title, :content, presence: true, allow_blank: true
+  validates :title, :description, presence: true, allow_blank: true
   validates :frequency, inclusion: { in: Post::FREQUENCIES, allow_blank: true }
 
   delegate :address, to: :location
 
   def parsed_metadata
-    ::Posts::Parse.new(url).metadata
+    ::Posts::Parse.new(link_url).metadata
   end
 end

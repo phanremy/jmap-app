@@ -1,16 +1,16 @@
 <div class="w-auto lg:w-1/2">
   <%= form_with model: @post, builder: TailwindBuilder, data: { turbo: false } do |form| %>
     <div class="relative my-8 border-b-2 focus-within:border-secondary">
-      <%= form.text_field :url, placeholder: "https://" %>
-      <%= form.label :url %>
+      <%= form.text_field :link_url, placeholder: "https://" %>
+      <%= form.label :link_url %>
     </div>
     <div class="relative my-8 border-b-2 focus-within:border-secondary">
       <%= form.text_field :title, placeholder: " " %>
       <%= form.label :title %>
     </div>
     <div class="relative my-8 border-b-2 focus-within:border-secondary">
-      <%= form.text_area :content, placeholder: " " %>
-      <%= form.label :content %>
+      <%= form.text_area :description, placeholder: " " %>
+      <%= form.label :description %>
     </div>
     <div class="flex my-8 items-center justify-between">
       <%= form.label :location, class: "relative", style: "top: 0px; transform: none !important;" %>
@@ -23,7 +23,7 @@
                         multiple: false,
                         class:    "w-full lg:w-1/2 ml-6" }) %>
     </div>
-    <% if @post.url.present? %>
+    <% if @post.link_url.present? %>
       test
     <% end %>
     <div class="field">

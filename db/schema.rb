@@ -40,15 +40,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_11_085354) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "url"
+    t.string "link_url"
+    t.string "image_url"
     t.string "title"
-    t.text "content"
+    t.text "description"
     t.bigint "location_id"
+    t.bigint "main_id"
     t.bigint "creator_id", null: false
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.string "frequency"
-    t.bigint "main_id"
     t.string "raw_address"
     t.decimal "longitude"
     t.decimal "latitude"

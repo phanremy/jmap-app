@@ -24,11 +24,15 @@ class Post < ApplicationRecord
   delegate :address, to: :location
 
   # TODO: to put in a concern
-  attr_accessor :metadata_errors
+  attr_accessor :metadata_errors, :location_ids
 
   def parse_metadata
     ::Posts::Parse.new(link_url).metadata.each do |key, value|
       send("#{key}=", value)
     end
+  end
+
+  def parse_location
+    Location.search_id_in([title, description].join(' '))
   end
 end

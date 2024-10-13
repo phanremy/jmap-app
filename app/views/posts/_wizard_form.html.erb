@@ -16,12 +16,12 @@
     <div class="flex my-8 items-center justify-between">
       <%= form.label :location, class: "relative", style: "top: 0px; transform: none !important;" %>
       <%= form.select(:location_id,
-                      @locations_data,
+                      options_for_select(@locations_data, @location_ids),
                       {},
                       { data:     { controller:  "slim-select",
                                     placeholder: t('actions.search'),
                                     "no-result": t('alert.none', class_name: t('location', scope: 'activerecord.models').pluralize.downcase)  },
-                        multiple: false,
+                        multiple: true,
                         class:    "w-full lg:w-1/2 ml-6" }) %>
     </div>
     <% if @post.link_url.present? %>

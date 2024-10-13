@@ -35,10 +35,12 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @location_ids = @post.parse_location.map { |result| result['id'] }
     set_locations_data
   end
 
   def update
+    @post.location_id = @post.location_ids.first
     if @post.update(post_params)
       flash[:success] = I18n.t('posts.update_success')
       redirect_to @post

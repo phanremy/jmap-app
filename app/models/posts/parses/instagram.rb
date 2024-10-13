@@ -21,9 +21,9 @@ module Posts
         image_url = doc.at("meta[property='og:image']")&.[]('content')
         description = doc.at("meta[name='description']")&.[]('content') ||
                       doc.at("meta[property='og:description']")&.[]('content')
-        location = Location.first
+        location_id = Location.search_id_in([title, description].join(' ')) || Location.default.id
 
-        { title:, image_url:, description:, location: }
+        { title:, image_url:, description:, location_id: }
       end
     end
   end

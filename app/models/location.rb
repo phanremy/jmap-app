@@ -37,4 +37,18 @@ class Location < ApplicationRecord
       .or(where(type: 'County', country:, county:))
       .or(where(type: 'City', country:, county:, city:))
   end
+
+  def self.default
+    first
+  end
+
+  def self.search_id_in(text)
+    text = text.gsub("\n", '')
+    query = ActiveRecord::Base.sanitize_sql(
+      [File.read("app/queries/locations/search_id_in.sql"),
+       { text: }]
+    )
+
+    ActiveRecord::Base.connection.select_all(query).entries
+  end
 end

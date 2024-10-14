@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   has_many :spaces, class_name: 'Space', foreign_key: :owner_id
   has_many :links, class_name: 'Link', foreign_key: :owner_id, dependent: :destroy
-  has_many :posts, dependent: :destroy
+  has_many :posts, foreign_key: :creator_id, dependent: :destroy
 
   scope :order_by_email, ->(direction = :asc) { order(email: direction) }
   scope :order_by_admin, ->(direction = :asc) { order(admin: direction) }

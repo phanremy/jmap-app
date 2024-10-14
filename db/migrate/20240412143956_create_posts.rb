@@ -3,10 +3,11 @@
 class CreatePosts < ActiveRecord::Migration[7.1]
   def change
     create_table :posts do |t|
-      # t.jsonb :content_details, null: false
-      t.string :url
+      t.string :link_url
+      # t.jsonb :metadata_details, null: false
+      t.string :image_url
       t.string :title
-      t.text :content
+      t.text :description
       # t.references :space, null: false, foreign_key: true
       t.references :location, null: true
       t.references :main, index: true, foreign_key: { to_table: :posts }

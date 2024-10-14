@@ -23,6 +23,8 @@ gem 'importmap-rails'
 gem 'jbuilder'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem 'kredis'
+# HTML parsing
+gem 'nokogiri'
 # Use Pagy for paginating with infinite scrolling options
 gem 'pagy'
 # Use postgresql as the database for Active Record

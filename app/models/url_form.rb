@@ -5,7 +5,7 @@ class UrlForm < BaseForm
 
   class RecognizedLinkUrlValidator < ActiveModel::Validator
     def validate(record)
-      return if Posts::Parse::URLS.keys.any? { |key| record.link_url.start_with?(key.to_s) }
+      return if Post::ALLOWED_URLS.keys.any? { |key| record.link_url.start_with?(key.to_s) }
 
       record.errors.add :link_url, 'not recognized'
     end

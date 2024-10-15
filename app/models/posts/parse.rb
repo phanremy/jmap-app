@@ -4,19 +4,14 @@ module Posts
   class Parse
     attr_reader :link_url
 
-    URLS = {
-      'https://www.instagram.com/p/': :Instagram,
-      'https://www.tiktok.com/': :Tiktok
-    }.freeze
-
     def initialize(link_url)
       @link_url = link_url
     end
 
     def metadata
-      return url_not_recognized_error unless URLS.keys.any? { |www| link_url.starts_with?(www.to_s) }
+      method = Post::ALLOWED_URLS.find { |www, _value| link_url.starts_with?(www.to_s) }.last
 
-      method = URLS.find { |www, _value| link_url.starts_with?(www.to_s) }.last
+      return url_not_recognized_error unless method
 
       method_class = "Posts::Parses::#{method}".constantize
 

@@ -25,7 +25,7 @@ class PostsController < ApplicationController
 
     if @post.persisted?
       flash[:success] = I18n.t('posts.create_success')
-      redirect_to post_wizard_path(id: 'url', post_id: @post.id)
+      redirect_to post_wizard_path(id: Wizard::Posts::Router.first_step, post_id: @post.id)
     else
       flash.now[:error] = I18n.t('alert.general_error')
       render_flash

@@ -4,7 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, :post_wizard
+    can :read, :wizard
     can :read, Location
     can :read, Post
     can :read, Link

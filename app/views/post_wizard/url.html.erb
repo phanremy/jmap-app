@@ -1,0 +1,14 @@
+<%= render 'shared/top_margin' %>
+<%= render layout: 'shared/container' do %>
+  <div class="w-auto lg:w-1/2">
+    <%= form_with url: post_wizard_path(id: @step, post_id: @post.id), method: :patch, builder: TailwindBuilder do |form| %>
+      <div class="relative my-8 border-b-2 focus-within:border-secondary">
+        <%= form.text_field :link_url, placeholder: "", value: @post.link_url %>
+        <%= form.label :link_url %>
+      </div>
+      <div class="field">
+        <%= form.submit t('actions.submit') %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

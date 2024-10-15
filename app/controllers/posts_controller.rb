@@ -15,38 +15,36 @@ class PostsController < ApplicationController
 
   def show; end
 
-  def new
-    @post = Post.new
-    set_locations_data
-  end
+  # def new
+  #   @post = Post.new
+  #   set_locations_data
+  # end
 
   def create
-    @post = Post.new(post_params)
-    @post.creator = current_user
-    @post.parse_metadata
+    @post = current_user.posts.incomplete.first || Post.create!(creator: current_user)
 
-    if @post.save
+    if @post.persisted?
       flash[:success] = I18n.t('posts.create_success')
-      redirect_to @post
+      redirect_to post_wizard_path(id: 'url', post_id: @post.id)
     else
-      flash.now[:error] = @post.metadata_errors || @post.errors.full_messages
+      flash.now[:error] = I18n.t('alert.general_error')
       render_flash
     end
   end
 
-  def edit
-    set_locations_data
-  end
+  # def edit
+  #   set_locations_data
+  # end
 
-  def update
-    if @post.update(post_params)
-      flash[:success] = I18n.t('posts.update_success')
-      redirect_to @post
-    else
-      flash.now[:error] = @post.errors.full_messages
-      render_flash
-    end
-  end
+  # def update
+  #   if @post.update(post_params)
+  #     flash[:success] = I18n.t('posts.update_success')
+  #     redirect_to @post
+  #   else
+  #     flash.now[:error] = @post.errors.full_messages
+  #     render_flash
+  #   end
+  # end
 
   def destroy
     if @post.destroy

@@ -2,7 +2,7 @@
 <%= render layout: 'shared/container' do %>
   <% if can? :manage, @post %>
     <div class="flex mb-10">
-      <%= secondary_link(t('actions.edit'), edit_post_path, size: :sm) %>
+      <%#= secondary_link(t('actions.edit'), edit_post_path, size: :sm) %>
         <%= destructive_button(t('actions.delete'), post_path, t('posts.destroy_confirm'), size: :sm) %>
     </div>
   <% end %>

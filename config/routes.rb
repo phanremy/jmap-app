@@ -20,8 +20,10 @@ Rails.application.routes.draw do
     get '/moon', to: 'pages#moon'
     get '/sun', to: 'pages#sun'
 
-    resources :posts, except: %i[new edit update]
-    resources :post_wizard, only: %i[show update]
+    resources :posts, except: %i[new edit update] do
+      resources :wizard, only: %i[show update],
+                         controller: 'posts/wizard'
+    end
     resources :locations, only: %i[index]
     resources :spaces do
       resources :users, only: %i[create], controller: 'spaces/users'

@@ -111,7 +111,7 @@ end
     location: Location.all.sample,
     description: Faker::Quote.matz,
     link_url: Faker::Internet.domain_name,
-    image_url: nil,
+    image_url: 'https://picsum.photos/200/200?random=1',
     starts_at: [random_date, nil].sample,
     ends_at: [random_date, nil].sample,
     frequency: [Post::FREQUENCIES.sample, nil].sample,

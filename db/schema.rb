@@ -40,11 +40,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_11_085354) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "link_url"
-    t.string "image_url"
-    t.string "title"
-    t.text "description"
-    t.jsonb "metadata_details"
+    t.string "link_url", default: "", null: false
+    t.string "image_url", default: "", null: false
+    t.string "title", default: "", null: false
+    t.text "description", default: "", null: false
+    t.jsonb "metadata_details", default: {}, null: false
     t.bigint "location_id"
     t.bigint "main_id"
     t.bigint "creator_id", null: false

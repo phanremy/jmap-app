@@ -18,7 +18,7 @@ module Wizard
                      description:,
                      location_id: unique_location_id.first,
                      image_url:,
-                     metadata_details: nil)
+                     metadata_details: {})
       end
 
       def complete?

@@ -2,7 +2,10 @@
   <%= form_with url: posts_url, method: :get, builder: TailwindBuilder, html: { class: "pb-5 flex flex-wrap gap-2", data: { turbo: true } } do |form| %>
     <%= select_tag :location_id,
         options_for_select(locations_data, params[:location_id]),
-        class: 'rounded-md border-gray-300 shadow-sm' %>
+        { data: { controller:  "slim-select",
+                  placeholder: t('actions.search'),
+                  "no-result": t('alert.none', class_name: t('location', scope: 'activerecord.models').pluralize.downcase)  },
+          class: 'rounded-md border-gray-300 shadow-sm' } %>
     <%= form.submit 'Reload' %>
   <% end %>
 </div>

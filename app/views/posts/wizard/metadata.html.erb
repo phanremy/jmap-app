@@ -1,6 +1,9 @@
 <%= render 'shared/top_margin' %>
 <%= render layout: 'shared/container' do %>
-  <div class="w-auto lg:w-1/2">
+  <div class="flex mb-10">
+    <%= secondary_link(t('actions.wizard.previous'), post_wizard_path(@post, @form.previous_step), size: :sm) %>
+  </div>
+  <div class="w-auto lg:w-1/2 mb-10">
     <div class="h-80 w-full" style="background-image:url(<%= @post.image_url %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
     </div>
     <%= form_with model: @post, url: post_wizard_path(@post, @step), method: :patch, builder: TailwindBuilder do |form| %>
@@ -31,4 +34,7 @@
       </div>
     <% end %>
   </div>
+  <% if @form.complete? %>
+    <%= render 'posts/post', post: @post.reload, iframe: false %>
+  <% end %>
 <% end %>

@@ -1,5 +1,8 @@
 fr:
   actions:
+    wizard:
+      next: Étape suivante
+      previous: Étape précédente
     delete: Supprimer
     edit: Modifier
     home: Accueil

@@ -20,6 +20,8 @@ module Posts
     end
 
     def inject_metadata
+      return if metadata_details.blank?
+
       metadata_details.each do |key, value|
         send("#{key}=", value)
       end

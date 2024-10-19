@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get '/moon', to: 'pages#moon'
     get '/sun', to: 'pages#sun'
 
-    resources :posts, except: %i[new edit update] do
+    resources :posts, except: %i[new update] do
       resources :wizard, only: %i[show update],
                          controller: 'posts/wizard'
     end

@@ -9,7 +9,9 @@ class SpacesController < ApplicationController
     @pagy, @spaces = pagy(@spaces, items: 5)
   end
 
-  def show; end
+  def show
+    @posts = @space.posts.order(updated_at: :desc)
+  end
 
   def new
     @space = Space.new

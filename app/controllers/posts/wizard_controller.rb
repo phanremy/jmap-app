@@ -5,36 +5,17 @@ module Posts
     before_action :initialize_variables, only: %i[show update]
 
     def show
-      if @step_router.possible_step?(@step)
-        set_form
-        if @post.link_url.present?
-          @locations_data = Location.accessible_by(current_ability)
-                                    .order(:id)
-                                    .map { |location| [location.address, location.id] }
-          @post.inject_metadata
-          @location_ids = @post.location_ids
-        end
-        render @step
-      else
-        render_error
-      end
+      @step_router.possible_step?(@step) ? render_step : render_error
     end
 
     def update
       return render_error unless @step_router.possible_step?(@step)
 
-      set_form
-
-      if @form.submit(params[:post]) && @form.complete?
-        if @form.next_step.nil?
-          redirect_to post_path(@post)
-        else
-          redirect_to post_wizard_path(id: @form.next_step, post_id: @post.id)
-        end
+      if form.submit(params[:post]) && form.complete?
+        render_next_step
       else
-        flash.now[:error] = @form.errors.full_messages.presence || I18n.t('alert.general_error')
+        flash.now[:error] = form.errors.full_messages.presence || I18n.t('alert.general_error')
         render_flash
-        # redirect_to post_wizard_path(id: @step_router.current_step, post_id: @post.id)
       end
     end
 
@@ -49,8 +30,29 @@ module Posts
       redirect_to root_path
     end
 
-    def set_form
+    def form
       @form ||= @step_router.form_for(@step).new(stuff: @post)
+    end
+
+    def render_step
+      if @step == :metadata
+        @locations_data = Location.accessible_by(current_ability)
+                                  .order(:id)
+                                  .map { |location| [location.address, location.id] }
+        @post.inject_metadata
+        @location_ids = @post.location_ids
+      end
+      form
+
+      render @step
+    end
+
+    def render_next_step
+      if form.next_step.nil?
+        redirect_to post_path(@post)
+      else
+        redirect_to post_wizard_path(id: form.next_step, post_id: @post.id)
+      end
     end
 
     def render_error

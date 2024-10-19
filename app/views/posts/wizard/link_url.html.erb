@@ -1,0 +1,19 @@
+<%= render 'shared/top_margin' %>
+<%= render layout: 'shared/container' do %>
+    <div class="flex mb-10">
+      <% if @form.complete? %>
+        <%= secondary_link(t('actions.wizard.next'), post_wizard_path(@post, @form.next_step), size: :sm) %>
+      <% end %>
+    </div>
+  <div class="w-auto lg:w-1/2">
+    <%= form_with model: @post, url: post_wizard_path(@post, @step), method: :patch, builder: TailwindBuilder do |form| %>
+      <div class="relative my-8 border-b-2 focus-within:border-secondary">
+        <%= form.text_field :link_url, placeholder: "" %>
+        <%= form.label :link_url %>
+      </div>
+      <div class="field">
+        <%= form.submit t('actions.submit') %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

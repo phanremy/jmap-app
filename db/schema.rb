@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_11_085354) do
     t.string "image_url"
     t.string "title"
     t.text "description"
+    t.jsonb "metadata_details"
     t.bigint "location_id"
     t.bigint "main_id"
     t.bigint "creator_id", null: false

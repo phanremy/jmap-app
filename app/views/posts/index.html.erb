@@ -1,7 +1,10 @@
 <%= render 'shared/top_margin' %>
 <%= render layout: 'shared/container' do %>
   <% if can? :create, Post %>
-    <%= primary_link(t('posts.new'), new_post_path) %>
+    <%= form_with url: posts_path, method: :post, builder: TailwindBuilder do |form| %>
+      <%= form.submit t('posts.new') %>
+    <% end %>
+    <%#= primary_link(t('posts.new'), posts_path, method: :post, data: { turbo: false }) %>
     <br><br>
   <% end %>
   <%= turbo_frame_tag :posts_index do %>

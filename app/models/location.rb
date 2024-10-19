@@ -49,7 +49,6 @@ class Location < ApplicationRecord
        { text: }]
     )
 
-    # ActiveRecord::Base.connection.select_all(query).entries
-    ActiveRecord::Base.connection.select_all(query).entries.first&.[]('id')
+    ActiveRecord::Base.connection.select_all(query).entries.map { |data| data['id'] }
   end
 end

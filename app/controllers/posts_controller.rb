@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, except: %i[index new create]
+  before_action :set_post, except: %i[index create]
   before_action :authenticate_user!, except: %i[index show]
 
   def index
@@ -15,39 +15,19 @@ class PostsController < ApplicationController
 
   def show; end
 
-  def new
-    @post = Post.new
-    set_locations_data
-  end
-
   def create
-    @post = Post.new(post_params)
-    @post.creator = current_user
-    @post.parse_metadata
+    @post = current_user.posts.incomplete.first || Post.create!(creator: current_user)
 
-    if @post.save
-      flash[:success] = I18n.t('posts.create_success')
-      redirect_to @post
+    if @post.persisted?
+      redirect_to post_wizard_path(id: Wizard::Posts::Router.first_step, post_id: @post.id)
     else
-      flash.now[:error] = @post.metadata_errors || @post.errors.full_messages
+      flash.now[:error] = I18n.t('alert.general_error')
       render_flash
     end
   end
 
   def edit
-    @location_ids = @post.parse_location.map { |result| result['id'] }
-    set_locations_data
-  end
-
-  def update
-    @post.location_id = @post.location_ids.first
-    if @post.update(post_params)
-      flash[:success] = I18n.t('posts.update_success')
-      redirect_to @post
-    else
-      flash.now[:error] = @post.errors.full_messages
-      render_flash
-    end
+    redirect_to post_wizard_path(id: Wizard::Posts::Router.first_step, post_id: @post.id)
   end
 
   def destroy

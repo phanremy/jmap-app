@@ -16,6 +16,10 @@ class Location < ApplicationRecord
   scope :order_by_type, ->(direction = :asc) { order(type: direction) }
   scope :order_by_original_name, ->(direction = :asc) { order(original_name: direction) }
   scope :type_query, ->(type) { type.blank? ? return : where(type:) }
+  scope :city, -> { type_query('City') }
+  scope :county, -> { type_query('County') }
+  scope :country, -> { type_query('Country') }
+  scope :with_geolocation, -> { where.not(longitude: nil).where.not(latitude: nil) }
   scope :search_query, lambda { |query|
     return if query.blank?
 

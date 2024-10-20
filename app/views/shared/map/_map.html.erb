@@ -22,7 +22,7 @@
   });
 
   // Add markers for each electrical station
-  const markers = JSON.parse('<%= raw generate_json(LOCATIONS) %>');
+  const markers = JSON.parse('<%= raw generate_json(@locations_markers) %>');
 
   <% marker_colors = COLORS[:markers] %>
   let status;
@@ -31,20 +31,21 @@
     var el = document.createElement('div');
     el.className = 'marker';
     console.log(marker.status)
-    if (marker.status === 'active') {
-      el.style.backgroundImage = 'url(<%= image_url("map/mapbox-marker-icon-#{marker_colors[:city]}.svg") %>)';
-    }
+    // if (marker.status === 'active') {
+    el.style.backgroundImage = 'url(<%= image_url("map/mapbox-marker-icon-#{marker_colors[:city]}.svg") %>)';
+    // }
     el.style.width = '20px';
     el.style.height = '30px';
 
-    if (marker.status === 'active') {
-      status = 'Active'
-    }
+    // if (marker.status === 'active') {
+    //   status = 'Active'
+    // }
     // Create a popup element
     var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
-      '<h3>' + marker.name + '</h3>' +
-      '<p>' + marker.type + '</p>' +
-      '<p>' + status + '</p>'
+      '<h3>' + marker.name + '</h3>'
+      // '<h3>' + marker.name + '</h3>' +
+      // '<p>' + marker.type + '</p>' +
+      // '<p>' + status + '</p>'
     )
 
     // Add marker to the map

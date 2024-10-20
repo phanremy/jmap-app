@@ -34,6 +34,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_11_085354) do
     t.string "county"
     t.string "city"
     t.string "original_name"
+    t.decimal "longitude"
+    t.decimal "latitude"
     t.index ["country", "county", "city"], name: "index_locations_on_country_and_county_and_city", unique: true
     t.index ["country", "county"], name: "index_locations_on_country_and_county", unique: true, where: "(city IS NULL)"
     t.index ["country"], name: "index_locations_on_country", unique: true, where: "((county IS NULL) AND (city IS NULL))"

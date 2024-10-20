@@ -7,7 +7,12 @@ class PagesController < ApplicationController
 
   def front; end
 
-  def map; end
+  def map
+    @locations_markers =
+      Location.with_geolocation.city
+              .pluck(:city, :longitude, :latitude)
+              .map { |data| { name: data[0], coordinates: [data[1], data[2]] }}
+  end
 
   def moon
     cookies[:moon] = { value: 'on' }

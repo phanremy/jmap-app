@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
+  include Posts::Query
+
   # authorize_resource class: false
   skip_before_action :authenticate_user!
   skip_authorization_check
@@ -8,10 +10,12 @@ class PagesController < ApplicationController
   def front; end
 
   def map
+    @posts = posts_query
     @locations_markers =
-      Location.with_geolocation.city
-              .pluck(:city, :longitude, :latitude)
-              .map { |data| { name: data[0], coordinates: [data[1], data[2]] }}
+      City.with_geolocation
+          .where(id: @posts.uniq.pluck(:location_id))
+          .pluck(:city, :longitude, :latitude)
+          .map { |data| { name: data[0], coordinates: [data[1], data[2]] } }
   end
 
   def moon

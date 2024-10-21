@@ -45,12 +45,11 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    # params.require(:post).permit(:title, :description, :link_url, :location_id)
     params.require(:post).permit(:link_url)
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = posts_query.find(params[:id])
   end
 
   def set_locations_data

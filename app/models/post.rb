@@ -14,11 +14,12 @@ class Post < ApplicationRecord
   before_validation { self.creator = creator.presence || User.default }
   before_validation { self.space_ids = space_ids.presence || [Space.default.id] }
 
-  scope :incomplete, -> { where(location_id: nil).or(where(title: nil)) }
+  scope :complete, -> { where.not(location_id: nil) }
+  scope :incomplete, -> { !complete }
   scope :location_query, lambda { |location_id|
     return if location_id.blank?
 
-    Post.where(location: Location.associated(location_id))
+    where(location: Location.associated(location_id))
   }
 
   validates :frequency, inclusion: { in: Post::FREQUENCIES, allow_blank: true }

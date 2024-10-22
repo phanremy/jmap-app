@@ -18,7 +18,8 @@ module Wizard
                      description:,
                      location_id: unique_location_id.first,
                      image_url:,
-                     metadata_details: {})
+                     metadata_details: {},
+                     status: :available)
       end
 
       def complete?

@@ -10,10 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_11_085354) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_21_215944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "unaccent"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "post_status", ["incomplete", "pending", "available", "hidden"]
 
   create_table "links", force: :cascade do |t|
     t.string "sku", null: false
@@ -58,9 +62,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_11_085354) do
     t.decimal "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.enum "status", default: "incomplete", null: false, enum_type: "post_status"
     t.index ["creator_id"], name: "index_posts_on_creator_id"
     t.index ["location_id"], name: "index_posts_on_location_id"
     t.index ["main_id"], name: "index_posts_on_main_id"
+    t.index ["status"], name: "index_posts_on_status"
   end
 
   create_table "space_posts", force: :cascade do |t|

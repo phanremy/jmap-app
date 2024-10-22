@@ -5,6 +5,9 @@ class Post < ApplicationRecord
 
   FREQUENCIES = %w[yearly].freeze
 
+  enum status: %i[incomplete pending available hidden].index_with(&:to_s).freeze
+  validates :status, inclusion: { in: statuses.keys }
+
   belongs_to :location, optional: true
   belongs_to :creator, class_name: 'User', foreign_key: :creator_id
   belongs_to :main, class_name: 'Post', foreign_key: :main_id, optional: true
@@ -14,8 +17,6 @@ class Post < ApplicationRecord
   before_validation { self.creator = creator.presence || User.default }
   before_validation { self.space_ids = space_ids.presence || [Space.default.id] }
 
-  scope :complete, -> { where.not(location_id: nil) }
-  scope :incomplete, -> { !complete }
   scope :location_query, lambda { |location_id|
     return if location_id.blank?
 

@@ -40,11 +40,10 @@ module Posts
                                   .order(:id)
                                   .map { |location| [location.address, location.id] }
         @post.inject_metadata
-        @location_ids = @post.location_ids
+        @location_ids = @post.location_id.present? ? [@post.location_id] : @post.location_ids
       end
-      form
 
-      render @step
+      render @step if form
     end
 
     def render_next_step

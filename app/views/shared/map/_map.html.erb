@@ -49,9 +49,11 @@
     )
 
     // Add marker to the map
-    new mapboxgl.Marker(el)
-      .setLngLat(marker.coordinates)
-      .setPopup(popup)
-      .addTo(map);
+    var marker = new mapboxgl.Marker(el)
+                  .setLngLat(marker.coordinates)
+                  .setPopup(popup)
+                  .addTo(map);
+
+    // marker.remove()
   });
 </script>

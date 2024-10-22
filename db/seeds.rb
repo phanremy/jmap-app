@@ -100,7 +100,8 @@ puts "Initial post count: #{initial_post_count}"
     starts_at: [random_date, nil].sample,
     ends_at: [random_date, nil].sample,
     frequency: [Post::FREQUENCIES.sample, nil].sample,
-    space_ids: Space.ids
+    space_ids: Space.ids,
+    status: :available
   )
 end
 
@@ -115,7 +116,8 @@ end
     starts_at: [random_date, nil].sample,
     ends_at: [random_date, nil].sample,
     frequency: [Post::FREQUENCIES.sample, nil].sample,
-    space_ids: [space1.id]
+    space_ids: [space1.id],
+    status: :available
   )
 end
 

@@ -48,6 +48,7 @@ module Posts
 
     def render_next_step
       if form.next_step.nil?
+        flash[:success] = I18n.t('posts.create_success')
         redirect_to post_path(@post)
       else
         redirect_to post_wizard_path(id: form.next_step, post_id: @post.id)

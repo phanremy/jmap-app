@@ -17,8 +17,8 @@ class CreatePosts < ActiveRecord::Migration[7.1]
       t.string :frequency
       # t.jsonb :location_details, default: {}
       t.string :raw_address
-      t.decimal :longitude
       t.decimal :latitude
+      t.decimal :longitude
 
       t.timestamps
     end

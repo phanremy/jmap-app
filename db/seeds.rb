@@ -9,9 +9,29 @@ def random_date
   date
 end
 
-puts "### User Seed started";
+def other_details
+  frequency_details.merge(address_details)
+end
 
-superadmin =
+def frequency_details
+  frequency = [Post::FREQUENCIES.sample, nil].sample
+
+  return {} if frequency.nil?
+
+  { starts_at: random_date, ends_at: random_date, frequency: }
+end
+
+def address_details
+  raw_address = [Faker::Address.full_address, nil].sample
+
+  return {} if raw_address.nil?
+
+  { latitude: Faker::Address.latitude, longitude: Faker::Address.longitude, raw_address: }
+end
+
+puts "### User Seed started"
+
+_superadmin =
   User.create_with(password: 'password')
       .find_or_create_by(email: 'superadmin@example.com', admin: true)
 admin =
@@ -23,14 +43,14 @@ creator =
 member1 =
   User.create_with(password: 'password')
       .find_or_create_by(email: 'user2@example.com')
-member2 =
+_member2 =
   User.create_with(password: 'password')
       .find_or_create_by(email: 'user3@example.com')
 _visitor =
   User.create_with(password: 'password')
       .find_or_create_by(email: 'visitor@example.com', confirmed: false)
 
-puts "### User Seed ended";
+puts "### User Seed ended"
 
 # (4..99).to_a.each do |time|
 #   User.create_with(password: 'password')
@@ -39,8 +59,12 @@ puts "### User Seed ended";
 #                          admin: [true, false].sample)
 # end
 
-# _post1 = Post.create(title: 'SuperAdmin\'s first post', body: 'This is the first post of the super admin', user: superadmin)
-# _post2 = Post.create(title: 'Admin\'s first post', body: 'This is the first post of the admin', user: admin)
+# _post1 = Post.create(title: 'SuperAdmin\'s first post',
+#                      body: 'This is the first post of the super admin',
+#                      user: superadmin)
+# _post2 = Post.create(title: 'Admin\'s first post',
+#                      body: 'This is the first post of the admin',
+#                      user: admin)
 
 # include Sku
 # 100.times.each do |time|
@@ -49,12 +73,13 @@ puts "### User Seed ended";
 #               body: generate_sku(excluded: Space.pluck(:description)))
 # end
 
+puts "### Space Seed started"
 
-puts "### Space Seed started";
-
-public_space = Space.create(owner: admin, description: 'Public Space', public: true)
-space1 = Space.create(owner: creator, description: 'My Shared Space', user_ids: [member1.id])
-_space2 = Space.create(owner: creator, description: 'My Private Space', user_ids: [])
+_public_space = Space.find_or_create_by(owner: admin, description: 'Public Space', public: true)
+space1 = Space.create_with(user_ids: [member1.id])
+              .find_or_create_by(owner: creator, description: 'My Shared Space')
+_space2 = Space.create_with(user_ids: [])
+               .find_or_create_by(owner: creator, description: 'My Private Space')
 
 # 100.times.each do |time|
 #   Space.create(owner: [superadmin, admin, creator, member1, member2].sample,
@@ -64,63 +89,60 @@ _space2 = Space.create(owner: creator, description: 'My Private Space', user_ids
 
 Link.create(space: Space.first, owner: creator)
 
-puts "### Space Seed ended";
+puts "### Space Seed ended"
 
-puts "### Location Seed started";
+puts "### Location Seed started"
 ['Japan'].each do |country|
   initial_country_count = Country.count
   initial_county_count = County.count
   initial_city_count = City.count
   puts "Initial location count for Country: #{initial_country_count} - " \
        "County: #{initial_county_count} - " \
-       "City: #{initial_city_count}";
-  puts "# Location Seed for #{country} started";
+       "City: #{initial_city_count}"
+  puts "# Location Seed for #{country} started"
   Locations::Seeds.new(country:).create_all
-  puts "# Location Seed for #{country} ended";
+  puts "# Location Seed for #{country} ended"
   puts "Created count location for Country: #{Country.count - initial_country_count} - " \
        "County: #{County.count - initial_county_count} - " \
-       "City: #{City.count - initial_city_count}";
+       "City: #{City.count - initial_city_count}"
 end
 
-puts "### Location Seed ended";
+puts "### Location Seed ended"
 
-
-puts "### Post Seed started";
+puts "### Post Seed started"
 
 initial_post_count = Post.count
 
 puts "Initial post count: #{initial_post_count}"
 
 (1..100).to_a.each do |sn|
-  Post.create(
+  Post.create!(
     title: "Creator post #{sn}",
-    creator: creator,
+    creator:,
     location: Location.all.sample,
     description: Faker::Quote.matz,
-    starts_at: [random_date, nil].sample,
-    ends_at: [random_date, nil].sample,
-    frequency: [Post::FREQUENCIES.sample, nil].sample,
+    link_url: Faker::Internet.domain_name,
+    image_url: 'https://picsum.photos/200/200?random=1',
     space_ids: Space.ids,
-    status: :available
+    status: Post.statuses.keys.sample,
+    **other_details
   )
 end
 
 (1..50).to_a.each do |sn|
-  Post.create(
+  Post.create!(
     title: "Member1 post #{sn}",
     creator: member1,
     location: Location.all.sample,
     description: Faker::Quote.matz,
     link_url: Faker::Internet.domain_name,
     image_url: 'https://picsum.photos/200/200?random=1',
-    starts_at: [random_date, nil].sample,
-    ends_at: [random_date, nil].sample,
-    frequency: [Post::FREQUENCIES.sample, nil].sample,
     space_ids: [space1.id],
-    status: :available
+    status: Post.statuses.keys.sample,
+    **other_details
   )
 end
 
 puts "Created post count: #{Post.count - initial_post_count}"
 
-puts "### Post Seed ended";
+puts "### Post Seed ended"

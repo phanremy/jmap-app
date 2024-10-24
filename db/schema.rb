@@ -58,8 +58,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_21_215944) do
     t.datetime "ends_at"
     t.string "frequency"
     t.string "raw_address"
-    t.decimal "longitude"
     t.decimal "latitude"
+    t.decimal "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.enum "status", default: "incomplete", null: false, enum_type: "post_status"

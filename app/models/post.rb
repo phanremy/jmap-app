@@ -14,8 +14,16 @@ class Post < ApplicationRecord
   has_many :space_posts, dependent: :destroy
   has_many :spaces, through: :space_posts
 
-  before_validation { self.creator = creator.presence || User.default }
-  before_validation { self.space_ids = space_ids.presence || [Space.default.id] }
+  after_initialize { return unless creator_id.present? ; self.creator = creator.presence || User.default }
+  after_initialize { return unless space_ids.present? ; self.space_ids = space_ids.presence || [Space.default.id] }
+
+  with_options if: :available? do
+
+    validates :location_id, :title, :description, :image_url, :link_url, presence: true
+    validates :frequency, :starts_at, :ends_at, presence: true
+    # validates :metadata_details, empty: true
+    validates :raw_address, :latitude, :longitude, presence: true
+  end
 
   scope :location_query, lambda { |location_id|
     return if location_id.blank?

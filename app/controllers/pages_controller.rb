@@ -1,13 +1,21 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
+  include Posts::Query
+
   # authorize_resource class: false
   skip_before_action :authenticate_user!
   skip_authorization_check
 
   def front; end
 
-  def map; end
+  def map
+    @locations_markers =
+      City.with_geolocation
+          .where(id: posts_query.uniq.pluck(:location_id))
+          .pluck(:city, :longitude, :latitude)
+          .map { |data| { name: data[0], coordinates: [data[1], data[2]] } }
+  end
 
   def moon
     cookies[:moon] = { value: 'on' }

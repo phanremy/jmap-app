@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  include Posts::Query
+
   before_action :set_post, except: %i[index create]
   before_action :authenticate_user!, except: %i[index show]
 
   def index
-    @posts = posts_query
+    @posts = posts_query.includes(:location, :spaces)
     @posts_count = @posts.size
     @locations_data = Location.accessible_by(current_ability)
                               .order(:id)
@@ -42,20 +44,12 @@ class PostsController < ApplicationController
 
   private
 
-  def posts_query
-    Post.accessible_by(current_ability)
-        .includes(:location, :spaces)
-        .location_query(params[:location_id])
-        .order(created_at: :desc)
-  end
-
   def post_params
-    # params.require(:post).permit(:title, :description, :link_url, :location_id)
     params.require(:post).permit(:link_url)
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = posts_query.find(params[:id])
   end
 
   def set_locations_data

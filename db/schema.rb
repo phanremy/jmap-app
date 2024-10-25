@@ -10,10 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_11_085354) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_21_215944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "unaccent"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "post_status", ["incomplete", "pending", "available", "hidden"]
 
   create_table "links", force: :cascade do |t|
     t.string "sku", null: false
@@ -34,17 +38,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_11_085354) do
     t.string "county"
     t.string "city"
     t.string "original_name"
+    t.decimal "longitude"
+    t.decimal "latitude"
     t.index ["country", "county", "city"], name: "index_locations_on_country_and_county_and_city", unique: true
     t.index ["country", "county"], name: "index_locations_on_country_and_county", unique: true, where: "(city IS NULL)"
     t.index ["country"], name: "index_locations_on_country", unique: true, where: "((county IS NULL) AND (city IS NULL))"
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "link_url"
-    t.string "image_url"
-    t.string "title"
-    t.text "description"
-    t.jsonb "metadata_details"
+    t.string "link_url", default: "", null: false
+    t.string "image_url", default: "", null: false
+    t.string "title", default: "", null: false
+    t.text "description", default: "", null: false
+    t.jsonb "metadata_details", default: {}, null: false
     t.bigint "location_id"
     t.bigint "main_id"
     t.bigint "creator_id", null: false
@@ -52,13 +58,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_11_085354) do
     t.datetime "ends_at"
     t.string "frequency"
     t.string "raw_address"
-    t.decimal "longitude"
     t.decimal "latitude"
+    t.decimal "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.enum "status", default: "incomplete", null: false, enum_type: "post_status"
     t.index ["creator_id"], name: "index_posts_on_creator_id"
     t.index ["location_id"], name: "index_posts_on_location_id"
     t.index ["main_id"], name: "index_posts_on_main_id"
+    t.index ["status"], name: "index_posts_on_status"
   end
 
   create_table "space_posts", force: :cascade do |t|

@@ -20,7 +20,7 @@ LOCATIONS = [
     type: 'city'
   },
   {
-    name: 'Tokyo',
+    name: 'Osaka',
     coordinates: [135.5023, 34.6937],
     status: 'active',
     type: 'city'

@@ -11,7 +11,7 @@ module Locations
     end
 
     def create_all
-      Location.insert_all(
+      Location.create(
         CSV.read(file_name, headers: true)
            .map { |row| format_data(row) }
       )

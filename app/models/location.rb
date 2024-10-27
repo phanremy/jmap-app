@@ -9,6 +9,10 @@ class Location < ApplicationRecord
   validates :type, presence: true, inclusion: { in: Location::TYPES }
 
   after_initialize { self.type ||= self.class }
+  before_validation { self.original_name = original_name || city || county || city }
+  before_validation { self.country = country ? I18n.transliterate(country) : nil }
+  before_validation { self.county = county ? I18n.transliterate(county) : nil }
+  before_validation { self.city = city ? I18n.transliterate(city) : nil }
 
   scope :order_by_country, ->(direction = :asc) { order(country: direction) }
   scope :order_by_county, ->(direction = :asc) { order(county: direction) }
@@ -20,15 +24,17 @@ class Location < ApplicationRecord
   scope :search_query, lambda { |query|
     return if query.blank?
 
-    where('UNACCENT(locations.country) ILIKE :query OR
-           UNACCENT(locations.county) ILIKE :query OR
-           UNACCENT(locations.city) ILIKE :query OR
-           UNACCENT(locations.original_name) ILIKE :query', query: "%#{I18n.transliterate(query)}%")
+    where('locations.country ILIKE :query OR
+           locations.county ILIKE :query OR
+           locations.city ILIKE :query OR
+           locations.original_name ILIKE :query', query: "%#{I18n.transliterate(query)}%")
   }
 
   def address
-    type_info = type == 'City' ? " - #{county}" : " (#{type})"
-    [send(type.downcase), type_info].join
+    # type_info = type == 'City' ? " - #{county}" : "" (#{type})""
+    type_info = type == 'City' ? " - #{county}" : ""
+    # [send(type.downcase), type_info].join
+    [original_name, " (#{send(type.downcase)}#{type_info})"].join
   end
 
   def self.associated(id)

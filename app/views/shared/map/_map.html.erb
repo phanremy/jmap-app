@@ -1,8 +1,10 @@
-<div id="map"
-     class="w-full h-[90vh]"
-     data-controller="<%# map%>"
-     data-map-markers-value="<%#= [{ latitude: 48.8566, longitude: 2.3522 }].to_json %>"
-     data-map-api-key-value="<%#= ENV['MAPBOX_API_KEY'] %>"></div>
+<%= turbo_frame_tag :map_container do %>
+  <div id="map"
+      class="w-full h-[90vh]"
+      data-controller="<%# map%>"
+      data-map-markers-value="<%#= [{ latitude: 48.8566, longitude: 2.3522 }].to_json %>"
+      data-map-api-key-value="<%#= ENV['MAPBOX_API_KEY'] %>"></div>
+<% end %>
 
 <script>
   mapboxgl.accessToken = '<%= ENV['MAPBOX_API_KEY'] %>';
@@ -28,15 +30,21 @@
   let status;
   markers.forEach(function(marker) {
     // Create a marker element
-    var el = document.createElement('div');
+    var el = document.createElement('a');
     el.className = 'marker';
-    console.log(marker.status)
+    // console.log(marker.status)
     // if (marker.status === 'active') {
     el.style.backgroundImage = 'url(<%= image_url("map/mapbox-marker-icon-#{marker_colors[:city]}.svg") %>)';
     // }
     el.style.width = '20px';
     el.style.height = '30px';
 
+
+    el.href = '/en/posts?location_id=' + marker.id
+    // el.setAttribute('data-remote', 'true');
+    el.setAttribute('data-turbo-action', 'replace');
+    el.setAttribute('data-turbo-frame', 'posts_index');
+    // el.setAttribute('method', 'post');
     // if (marker.status === 'active') {
     //   status = 'Active'
     // }

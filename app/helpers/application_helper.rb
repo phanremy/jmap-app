@@ -19,6 +19,7 @@ module ApplicationHelper
     # request.path
     # request.env['PATH_INFO']
     # [front_path].map { |path| current_page?(path) }.any?
+    # true
     current_page_in?(DARK_PATHS)
   end
 

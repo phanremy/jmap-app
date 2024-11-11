@@ -5,6 +5,8 @@
     <% end %>
     <% if @posts.count.positive? %>
       <%= @posts_count %> <%= t('post', scope: 'activerecord.models', count: @posts_count) %>
+      <br>
+      <br>
       <%= turbo_frame_tag :posts do %>
         <%= render @posts %>
         <% if @pagy.next %>

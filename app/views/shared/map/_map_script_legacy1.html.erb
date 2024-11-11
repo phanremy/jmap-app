@@ -1,0 +1,59 @@
+<script>
+  mapboxgl.accessToken = '<%= ENV['MAPBOX_API_KEY'] %>';
+
+  const bounds = [
+    [128.14779633276876, 29.6010980729196447], // Southwest coordinates
+    [148.350203215486, 46.03004580866485] // Northeast coordinates
+  ];
+
+  const map = new mapboxgl.Map({
+    container: 'map',
+    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+    style: 'mapbox://styles/mapbox/outdoors-v12',
+    center: [138.2529, 36.2048],
+    maxBounds: bounds,
+    zoom: 4
+  });
+
+  // Add markers for each electrical station
+  const markers = JSON.parse('<%= raw generate_json(@locations_markers) %>');
+
+  <% marker_colors = COLORS[:markers] %>
+  let status;
+  markers.forEach(function(marker) {
+    // Create a marker element
+    var el = document.createElement('a');
+    el.className = 'marker';
+    // console.log(marker.status)
+    // if (marker.status === 'active') {
+    el.style.backgroundImage = 'url(<%= image_url("map/mapbox-marker-icon-#{marker_colors[:city]}.svg") %>)';
+    // }
+    el.style.width = '20px';
+    el.style.height = '30px';
+
+
+    el.href = '/<%= params[:locale] %>' + '/posts?location_id=' + marker.id
+    // el.setAttribute('data-remote', 'true');
+    el.setAttribute('data-turbo-action', 'replace');
+    el.setAttribute('data-turbo-frame', 'posts_index');
+    // el.setAttribute('method', 'post');
+    // if (marker.status === 'active') {
+    //   status = 'Active'
+    // }
+    // Create a popup element
+    var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
+      '<h3>' + marker.name + '</h3>'
+      // '<h3>' + marker.name + '</h3>' +
+      // '<p>' + marker.type + '</p>' +
+      // '<p>' + status + '</p>'
+    )
+
+    // Add marker to the map
+    var marker = new mapboxgl.Marker(el)
+                  .setLngLat(marker.coordinates)
+                  .setPopup(popup)
+                  .addTo(map);
+
+    // marker.remove()
+  });
+</script>

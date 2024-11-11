@@ -6,8 +6,8 @@ module Posts
 
     def posts_query
       Post.accessible_by(current_ability)
-          .available
           .location_query(params[:location_id])
+          .available
           .order(created_at: :desc)
     end
   end

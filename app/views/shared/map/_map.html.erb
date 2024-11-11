@@ -1,6 +1,6 @@
 <%= turbo_frame_tag :map_container do %>
   <div id="map"
-      class="w-full h-[90vh]"
+      class="w-full h-[100vh]"
       data-controller="<%# map%>"
       data-map-markers-value="<%#= [{ latitude: 48.8566, longitude: 2.3522 }].to_json %>"
       data-map-api-key-value="<%#= ENV['MAPBOX_API_KEY'] %>"></div>
@@ -40,7 +40,7 @@
     el.style.height = '30px';
 
 
-    el.href = '/en/posts?location_id=' + marker.id
+    el.href = '/<%= params[:locale] %>' + '/posts?location_id=' + marker.id
     // el.setAttribute('data-remote', 'true');
     el.setAttribute('data-turbo-action', 'replace');
     el.setAttribute('data-turbo-frame', 'posts_index');

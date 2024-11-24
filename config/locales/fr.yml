@@ -87,7 +87,10 @@ fr:
   activerecord:
     models:
      space: Espace
-     post: Poste
+     post:
+      zero: Publication
+      one: Publication
+      other: Publications
      user: Utilisateur
 
     attributes:

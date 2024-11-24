@@ -11,6 +11,11 @@
           </div>
         <% end %>
       <% end %>
+      <% if can? :create, Post %>
+        <%= form_with url: posts_path, method: :post, builder: TailwindBuilder do |form| %>
+          <%= form.submit t('posts.new') %>
+        <% end %>
+      <% end %>
       <%= dropdown button_label_lg:  t('actions.navigation.lg'),
                    button_label_sm:  t('actions.navigation.sm'),
                    container_class: 'px-2',

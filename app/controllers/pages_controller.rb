@@ -10,11 +10,11 @@ class PagesController < ApplicationController
   def front; end
 
   def map
-    @locations_markers =
+    @cities_markers =
       City.with_geolocation
           .where(id: posts_query.uniq.pluck(:location_id))
-          .pluck(:city, :longitude, :latitude)
-          .map { |data| { name: data[0], coordinates: [data[1], data[2]] } }
+          .pluck(:id, :city, :longitude, :latitude)
+          .map { |data| { id: data[0], name: data[1], coordinates: [data[2], data[3]] } }
   end
 
   def moon

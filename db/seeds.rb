@@ -115,10 +115,12 @@ initial_post_count = Post.count
 
 puts "Initial post count: #{initial_post_count}"
 
-(1..100).to_a.each do |sn|
+(1..500).to_a.each do |sn|
   Post.create!(
-    title: "Creator post #{sn}",
+    # title: "Creator post #{sn}",
+    title: "Post",
     creator:,
+    # location: City.last(200).sample,
     location: Location.all.sample,
     description: Faker::Quote.matz,
     link_url: Faker::Internet.domain_name,
@@ -129,10 +131,12 @@ puts "Initial post count: #{initial_post_count}"
   )
 end
 
-(1..50).to_a.each do |sn|
+(1..100).to_a.each do |sn|
   Post.create!(
-    title: "Member1 post #{sn}",
+    # title: "Member1 post #{sn}",
+    title: "Post",
     creator: member1,
+    # location: City.last(200).sample,
     location: Location.all.sample,
     description: Faker::Quote.matz,
     link_url: Faker::Internet.domain_name,
@@ -142,6 +146,8 @@ end
     **other_details
   )
 end
+
+# Post.update_all(status: :available)
 
 puts "Created post count: #{Post.count - initial_post_count}"
 

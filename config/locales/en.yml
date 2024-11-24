@@ -83,7 +83,10 @@ en:
   activerecord:
     models:
      space: Space
-     post: Post
+     post:
+      zero: Posts
+      one: Post
+      other: Posts
      user: User
      location: Location
 

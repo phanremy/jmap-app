@@ -10,7 +10,7 @@ class PagesController < ApplicationController
   def front; end
 
   def map
-    @locations_markers =
+    @cities_markers =
       City.with_geolocation
           .where(id: posts_query.uniq.pluck(:location_id))
           .pluck(:id, :city, :longitude, :latitude)

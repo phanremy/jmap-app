@@ -10,3 +10,13 @@ Specification
 http://localhost:3000/map/Tokyo%20Japan => http://localhost:3000/en?location_id=333
 
 Morphing / Interaction / Map Pins / Map click&zoom
+
+
+[] instagram => fix image
+[] facebook
+[] tiktok
+[] reddit
+[] miscellanious
+[] faire apparaitre province au lieu de ville
+[] cacher les groupes
+[] création de post plus facile

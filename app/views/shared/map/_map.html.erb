@@ -23,10 +23,10 @@
     zoom: 4
   });
 
-  const markers = JSON.parse('<%= raw generate_json(@locations_markers) %>');
+  const cities_markers = JSON.parse('<%= raw generate_json(@cities_markers) %>');
 
   <% marker_colors = COLORS[:markers] %>
-  markers.forEach(function(marker) {
+  cities_markers.forEach(function(marker) {
     var el = document.createElement('a');
     el.className = 'marker';
     el.style.backgroundImage = 'url(<%= image_url("map/mapbox-marker-icon-#{marker_colors[:city]}.svg") %>)';
@@ -40,7 +40,7 @@
                   .addTo(map);
   });
 
-  const features = markers.map(function(marker) {
+  const features = cities_markers.map(function(marker) {
     return {
       'type': 'Feature',
       'properties': {

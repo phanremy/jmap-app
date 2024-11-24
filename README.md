@@ -18,5 +18,9 @@ Morphing / Interaction / Map Pins / Map click&zoom
 [] reddit
 [] miscellanious
 [] faire apparaitre province au lieu de ville
-[] cacher les groupes
-[] création de post plus facile
+[X] cacher les groupes
+[X] création de post plus facile
+[X] gestion des liens turbo
+
+
+https://docs.mapbox.com/mapbox-gl-js/example/popup-on-hover/

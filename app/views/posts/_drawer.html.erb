@@ -1,8 +1,5 @@
 <%= render layout: 'shared/drawer' do %>
   <%= render layout: 'shared/container' do %>
-    <% if false %>
-      <%= render 'posts/filter', search_url: posts_url, locations_data: @locations_data %>
-    <% end %>
     <% if @posts.count.positive? %>
       <%= @posts_count %> <%= t('post', scope: 'activerecord.models', count: @posts_count) %>
       <br>

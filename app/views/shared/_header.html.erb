@@ -21,11 +21,11 @@
                    container_class: 'px-2',
                    is_left:          false,
                    is_top:           true do %>
-        <%= dropdown_link t('actions.home'), front_path, turbo: false if user_signed_in? && current_user.admin? %>
+        <%#= dropdown_link t('actions.home'), root_path, turbo: false if user_signed_in? && current_user.admin? %>
         <%= dropdown_link 'Map', map_path, turbo: false %>
-        <%= dropdown_link t('spaces.index.title'), spaces_path, turbo: false if user_signed_in? && current_user.confirmed? %>
+        <%#= dropdown_link t('spaces.index.title'), spaces_path, turbo: false if user_signed_in? && current_user.confirmed? %>
         <%#= dropdown_link t('spaces.new'), new_space_path, turbo: false if can? :manage, Space %>
-        <%= dropdown_link t('posts.index'), posts_path, turbo: false if can? :create, Post %>
+        <%#= dropdown_link t('posts.index'), posts_path, turbo: false if can? :create, Post %>
         <%#= dropdown_link t('posts.new'), posts_path, turbo: false, method: :post if can? :create, Post %>
         <%= dropdown_link t('users.index.title'), users_path, turbo: false if can? :manage, User %>
         <% if user_signed_in? %>

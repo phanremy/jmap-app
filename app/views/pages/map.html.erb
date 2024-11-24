@@ -1,4 +1,3 @@
 <%= render 'shared/map/map' %>
-<%= turbo_frame_tag :posts_index, src: posts_path do %>
-  <%= render partial: 'shared/spinner' %>
+<%= turbo_frame_tag :posts_index do %>
 <% end %>

@@ -32,7 +32,6 @@ class Post < ApplicationRecord
 
   delegate :address, to: :location, allow_nil: true
 
-
   # TODO: attach image
   # def image_url
   #   return super

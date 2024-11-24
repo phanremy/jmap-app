@@ -21,4 +21,11 @@ class City < Location
 
   validates :country, :city, presence: true
   validates :city, uniqueness: { scope: %i[country county], message: :uniqueness }
+
+  def self.markers(posts_query)
+    with_geolocation
+      .where(id: posts_query.uniq.pluck(:location_id))
+      .pluck(:id, :city, :longitude, :latitude)
+      .map { |data| { id: data[0], name: data[1], coordinates: [data[2], data[3]] } }
+  end
 end

@@ -6,16 +6,12 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /#{locales}/ do
     devise_for :users
 
-    authenticated :user, lambda {|u| u.admin? } do
-      root to: 'pages#map', as: :admin_root
-    end
+    root to: 'pages#map'
 
     authenticated do
       root to: 'pages#map', as: :authenticated_root
     end
 
-    root 'pages#front'
-    get '/front', to: 'pages#front'
     get '/map', to: 'pages#map'
     get '/moon', to: 'pages#moon'
     get '/sun', to: 'pages#sun'

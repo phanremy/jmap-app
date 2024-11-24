@@ -7,14 +7,8 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!
   skip_authorization_check
 
-  def front; end
-
   def map
-    @cities_markers =
-      City.with_geolocation
-          .where(id: posts_query.uniq.pluck(:location_id))
-          .pluck(:id, :city, :longitude, :latitude)
-          .map { |data| { id: data[0], name: data[1], coordinates: [data[2], data[3]] } }
+    @cities_markers = City.markers(posts_query)
   end
 
   def moon

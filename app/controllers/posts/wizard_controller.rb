@@ -2,6 +2,7 @@
 
 module Posts
   class WizardController < ApplicationController
+    authorize_resource class: false
     before_action :initialize_variables, only: %i[show update]
 
     def show

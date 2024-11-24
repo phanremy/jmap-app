@@ -20,12 +20,15 @@ class Ability
     can :manage, Space
     can :manage, User
     can :manage, Link
+    can :manage, :wizard
   end
 
   def user_abilities(user)
-    can :manage, Space, owner: user
+    can :manage, Post
+    can :update, :wizard
+    # can :manage, Space, owner: user
     # can :manage, Space, users: { id: user.id }
-    can :read, Space, users: { id: user.id }
+    # can :read, Space, users: { id: user.id }
     can %i[create destroy], Link, space: { owner: user }
   end
 end

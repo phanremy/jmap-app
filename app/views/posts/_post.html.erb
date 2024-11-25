@@ -1,6 +1,9 @@
 <div class="flex items-center justify-center" data-controller="modal-open">
   <div class="md:max-w-lg sm:max-w-md rounded overflow-hidden shadow-lg mb-2 mx-1 cursor-pointer" style="width: 384px!important" data-action="click->modal-open#call">
-    <div class="h-80 w-full" style="background-image:url(<%= post.image_url %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <div class="h-80 w-full flex justify-center items-center">
+      <%= turbo_frame_tag :"post_image_#{post.id}", loading: :lazy, src: post_fetch_image_path(post, image_url: post.image_url), class: 'w-full' do %>
+        <%= render partial: 'shared/spinner' %>
+      <% end %>
     </div>
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2" style="height:56px !important" ><%= post.title&.truncate(50) %> (#<%= post.id %>)</div>

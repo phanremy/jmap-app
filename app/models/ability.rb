@@ -8,6 +8,7 @@ class Ability
     can :read, Location
     can :read, Post
     can :read, Link
+    can :read, :fetch_image
 
     return unless user&.confirmed?
 

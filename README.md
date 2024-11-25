@@ -12,7 +12,7 @@ http://localhost:3000/map/Tokyo%20Japan => http://localhost:3000/en?location_id=
 Morphing / Interaction / Map Pins / Map click&zoom
 
 
-[] instagram => fix image
+[X] fix image
 [] facebook
 [] tiktok
 [] reddit

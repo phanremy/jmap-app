@@ -1,0 +1,4 @@
+<%= turbo_frame_tag :"post_image_#{@post_id}" do %>
+  <div class="h-80 w-full" style="background-image:url(<%= @image_url %>); background-position: center; background-repeat: no-repeat; background-size: cover;">
+  </div>
+<% end %>

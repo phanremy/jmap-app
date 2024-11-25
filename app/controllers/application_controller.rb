@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   rescue_from CanCan::AccessDenied do |exception|
+    # puts exception.action
+    # puts exception.subject
     if current_user.nil?
       respond_to do |format|
         format.json { head :forbidden }

@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     resources :posts, except: %i[new update] do
       resources :wizard, only: %i[show update],
                          controller: 'posts/wizard'
+      resource :fetch_image, only: %i[show],
+                             controller: 'posts/fetch_image'
     end
     resources :locations, only: %i[index]
     resources :spaces do

@@ -1,5 +1,5 @@
 <div class="flex items-center justify-center" data-controller="modal-open">
-  <div class="md:max-w-lg sm:max-w-md rounded overflow-hidden shadow-lg mb-2 mx-1 cursor-pointer" style="width: 384px!important" data-action="click->modal-open#call">
+  <div class="w-full md:max-w-lg sm:max-w-md rounded overflow-hidden shadow-lg mb-2 mx-1 cursor-pointer" style="" data-action="click->modal-open#call">
     <div class="h-80 w-full flex justify-center items-center">
       <%= turbo_frame_tag :"post_image_#{post.id}", loading: :lazy, src: post_fetch_image_path(post, image_url: post.image_url), class: 'w-full' do %>
         <%= render partial: 'shared/spinner' %>

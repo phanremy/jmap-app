@@ -13,7 +13,7 @@ module Posts
 
     def fetch_image
       html = URI.parse(params[:image_url]).open.read
-      doc = Nokogiri::HTML(html)
+      Nokogiri::HTML(html)
 
       params[:image_url]
     rescue StandardError

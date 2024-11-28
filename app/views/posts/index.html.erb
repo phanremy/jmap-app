@@ -2,6 +2,6 @@
 <%= render layout: 'shared/container' do %>
   <h3 class="font-heading text-4xl"><%= @location_name %></h3>
   <%= turbo_frame_tag :posts_index do %>
-    <%= render 'posts/drawer', posts: @posts, posts_count: @posts_count, locations_data: @locations_data %>
+    <%= render 'posts/drawer', posts: @posts, location_name: @location_name, posts_count: @posts_count, locations_data: @locations_data %>
   <% end %>
 <% end %>

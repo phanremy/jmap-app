@@ -29,6 +29,7 @@ class Post < ApplicationRecord
 
     where(location: Location.associated(location_id))
   }
+  scope :from_confirmed_users, -> { includes(:creator).where(creator: { confirmed: true }) }
 
   delegate :address, to: :location, allow_nil: true
 

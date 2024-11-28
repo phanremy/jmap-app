@@ -1,19 +1,11 @@
-<%= render layout: 'shared/drawer' do %>
-  <%= render layout: 'shared/container' do %>
-    <% if @posts.count.positive? %>
-      <%= @posts_count %> <%= t('post', scope: 'activerecord.models', count: @posts_count) %>
-      <br>
-      <br>
-      <%= turbo_frame_tag :posts do %>
-        <%= render @posts %>
-        <% if @pagy.next %>
-          <%= turbo_frame_tag :posts, loading: :lazy, src: posts_path(only_path: false, params: { page: @pagy.next }.merge(request.query_parameters.except(:page))) do %>
-            <%= render partial: 'shared/spinner' %>
-          <% end %>
-        <% end %>
+
+<%= render layout: 'shared/drawer', locals: { panel_title: post_drawer_title(location_name, posts_count) } do %>
+  <%= turbo_frame_tag :posts do %>
+    <%= render posts %>
+    <% if @pagy.next %>
+      <%= turbo_frame_tag :posts, loading: :lazy, src: posts_path(only_path: false, params: { page: @pagy.next }.merge(request.query_parameters.except(:page))) do %>
+        <%= render partial: 'shared/spinner' %>
       <% end %>
-    <% else %>
-      <p><%= t('alert.none', class_name: t('post', scope: 'activerecord.models').pluralize.downcase) %></p>
     <% end %>
   <% end %>
 <% end %>

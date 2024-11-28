@@ -11,7 +11,7 @@
     <%= form_with model: @post, url: post_wizard_path(@post, @step), method: :patch, builder: TailwindBuilder do |form| %>
       <div class="relative my-8 border-b-2 focus-within:border-secondary">
         <%= form.text_field :link_url, placeholder: "" %>
-        <%= form.label :link_url %>
+        <%= form.label :link_url, wizard_link_label %>
       </div>
       <div class="field">
         <%= form.submit t('actions.wizard.next') %>
